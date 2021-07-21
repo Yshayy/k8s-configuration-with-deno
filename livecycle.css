@@ -1,0 +1,45 @@
+body, p , span, div  {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+
+.livecycle .reveal h1,
+.livecycle .reveal h2, 
+.livecycle .reveal h3,
+.livecycle .reveal h4,
+.livecycle .reveal h5,
+.livecycle .reveal h6{
+    color:#00aeef;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-transform: none
+
+}
+
+.livecycle .blue{
+    color:#00aeef;
+}
+
+.livecycle li {
+    color: #595959
+}  
+
+.reveal header, .reveal footer {
+    display: none;
+}
+
+.livecycle footer{
+    display: block;
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    color:#00aeef;
+    font-size:20px;
+}
+
+.livecycle header{
+    display: block;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color:#00aeef;
+}
