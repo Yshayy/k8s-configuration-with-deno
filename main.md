@@ -1,77 +1,93 @@
 ---
 theme: simple
+center: false
 ---
 
-## Experimenting with Deno  
-## for easier k8s deployments
+<!-- .slide: class="main" -->
+
+<link rel="stylesheet" type="text/css" href="./livecycle.css" />
+
+### Experimenting with Deno  
+### for easier k8s deployments
 
 
-<div style="color:#434343">
+<div style="text-align:center">
 <div>Yshay Yaacobi</div>
-@yshayy
-</div>
+<div>@yshayy</div>
 <div>https://git.io/fxh57</div>
+</div>
 
 ---
 
-## Kubernetes
+### ![Kubernetes](https://kubernetes.io/images/favicon.png){style=width:80px;border:none;box-shadow:none;vertical-align:middle;margin-top:5px} Kubernetes
 
 > "Open-source container-orchestration system for automating computer application deployment, scaling, and management." {style=text-align:left}
 
+*Source: Wikipedia{style=font-size:16px;text-align:right;margin-right:160px;font-weight:bold}
 
 ---
 
-<!-- .slide: style="text-align: left;" -->
 
-## Kubernetes
+### ![Kubernetes](https://kubernetes.io/images/favicon.png){style=width:80px;border:none;box-shadow:none;vertical-align:middle;margin-top:5px} Kubernetes
 
-- Most popular way to run container workload and distributed microservices 
+* Created by Google, backed by all major cloud providers
+* The heart of the "cloud-native" ecosystem
+* Most popular way to run container workloads at scale
 
 ---
 
-## Deno
+### ![Deno](https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Deno.svg/1200px-Deno.svg.png){style=width:100px;border:none;box-shadow:none;vertical-align:middle;margin-top:5px} Deno
 
 > "Deno is a runtime for JavaScript and TypeScript that is based on the V8 JavaScript engine and the Rust programming language." {style=text-align:left}
 
----
-
-<!-- .slide: style="text-align: left;" -->
-
-## Deno
-
-- The next evolution of node.js
+*Source: Wikipedia{style=font-size:16px;text-align:right;margin-right:160px;font-weight:bold}
 
 ---
 
-## Experimenting with Deno  
-## for easier k8s deployments  (?!)
+### ![Deno](https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Deno.svg/1200px-Deno.svg.png){style=width:100px;border:none;box-shadow:none;vertical-align:middle;margin-top:5px} Deno
+
+- Created by Ryan Dahl (Node.js creator)
+- The next evolution of Node.js (?)
 
 ---
 
-## About me
+<!-- .slide: class="main" -->
+
+### Experimenting with Deno  
+### for easier k8s deployments (?!)
+
+<!-- 2m --->
+
+---
+
+![Yshay Yaacobi](https://github.com/yshayy.png?size=150){style=float:right;margin-right:40px;border-radius:75px;border:none}
+### About me 
 
 - CTO of livecycle
-- Prinicipal Enginner at Soluto
-- Full-Stack developerP
-- Heavily used kubernetes in the past  5 years
+- Full-Stack engineer
+- Heavily used kubernetes in the past 5 years
 - OSS Maintainer of Tweek (git.io/tweek)
-
-
+- Ex-Prinicipal Enginner at Soluto
 
 ---
 
-### Agenda?
+### Agenda
 
-- Quick recap of kubernetes resource model
-- YAMLs, Helm and the mess we're in
-- Deno for the resque
-- Summary and notes
+- Quick recap of kubernetes resource model <icon/>
+- YAMLs, Helm and the mess we're in <icon/>
+- Deno for the resque <icon/>
+- Summary and notes <icon/>
+
+<!-- 3m --->
 
 ---
 
 ### Kubernetes Resource Model
 
-- Resources + Controllers = Profit
+- Resources 
+- Controllers
+- ....
+- Profit 💵💵
 
 ---
 
@@ -84,25 +100,25 @@ theme: simple
 
 ---
 
-### Let's start with running something simple with k8s
+#### Let's start with running something simple
 
 - Pod
 
 ---
 
-### Now let's add more stuff
+#### Now let's add more stuff
 
-- Deployment
-- Service
-- ConfigMap
-- Ingress
-- Secrets
-- PVCs
-- PDBs
+- Deployment 
+- Service {.fragment}
+- ConfigMap {.fragment}
+- Ingress {.fragment}
+- Secrets {.fragment}
+- PVCs {.fragment}
+- PDBs {.fragment}
 
 ---
 
-### And not to mention Custom Resources
+#### And then, there are Custom Resources
 
 - Monitor
 - Function
@@ -110,16 +126,25 @@ theme: simple
 - Canary
 - ...
 
+<!-- 7m --->
+
 ---
 
-### Can it be more simple and less bloated?
+<!-- .slide: class="main" -->
+
+#### A single kubernetes service definition can be **huge**.
+#### And it's even more diffiuclt when running a full cloud-native/distributed app
+
+---
+
+#### Can it be simpler, sander and less bloated?
 
 - Well... Yes, Probably
 - Many have tried
 
 ---
 
-### Many...
+#### SO Many...
 
 Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, Kapitan, Konfd, Templates/Ktmpl, Fabric8 client, Kubegen, kenv, Ansible, Puppet, KPM, Nulecule, Kedge (OpenCompose is deprecated), Chartify, Podex, k8sec, kb80r, k8s-kotlin-dsl, KY, Kploy, Kdeploy, Kubernetes-deploy, Generator-kubegen, K8comp, Kontemplate, Kexpand, Forge, Psykube, Koki, Deploymentizer, generator-kubegen, Broadway, Srvexpand, Rok8s-scripts, ERB-Hiera, k8s-icl, sed, envsubst, Jinja, spiff {style=font-size:20px}
 
@@ -127,8 +152,18 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 
 ---
 
+<!-- 8.5m --->
+
+<!-- .slide: class="main" -->
+
+### Let's grab a look at the popular ones
+
+---
+
 ### Quick glance - Helm
 
+- Template based
+- Parameterized 
 - DEMO: Simple chart example
 - DEMO: Complex chart example
 
@@ -136,10 +171,13 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 
 ### Helm Pros
 
+- Templating
+- Paramaritization
 - Distributed package registry
-- 
 
 ---
+
+### Helm Cons
 
 - Editing is difficult
 - Everything is text based
@@ -147,15 +185,42 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 - Lots of duplicate parameterization with k8s
 - No idiomatic way to "patch" charts
 
-----
+---
+
+<!-- .slide: class="main" -->
 
 ### Quick glance - Kustomize
 
+- Overlay instead of parameterization 
+- DEMO: Simple overlay
+
 ---
 
-### What's wrong with configuration languages?
+### Kustomize Pros
+
+- Simple, no need to learn new stuff
+- Lots of utility methods
+- Built-in with kubectl (-k)
 
 ---
+
+### Kustomize Cons
+
+- Limited
+
+---
+
+### Helm + Kustomize toghter
+
+---
+
+<!-- .slide: class="main" -->
+
+### Let's step back
+
+---
+
+<!-- .slide: class="main" -->
 
 ### What's important?
 
@@ -163,17 +228,31 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 
 ### Composition
 
+- Code reuse - ability to reuse definitions or functions in different places
+- Abstraction - ability to create high level pieces
+- Parametrization - ability to reuse definitions with different paramaters
+
 ---
 
 ### Correctness
+
+- Type safety 
+- Testability 
 
 ---
 
 ### Code Sharing
 
+- External imports
+- Package management
+
 ---
 
 ### Developer friendly
+
+- Familiar Programming language 
+- IDE Support
+- No boilerplact
 
 ---
 
@@ -219,7 +298,7 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 | Testability           |   	    |           	|   
 | Code Sharing                                    |||   
 | Exteranl imports     	|           |               |   
-| Depenencies management|   	    |           	|   
+| Package management    |   	    |           	|   
 | Developer friendly                              |||   
 | Familiar PL        	|   	    |           	|   
 | IDE support          	|   	    |           	|   
@@ -243,7 +322,8 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 
 ### Typescript
 
-- Typescript Benefits
+- Superset of javascript
+- Extremly strong type-system
 
 ---
 
@@ -269,17 +349,22 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 
 ### Importing external package
 
+- Import Example
+
 ---
 
 ### And it secure
 
 - Importing malicious package
 
+---
+
 ### Ingredients
 
+- Deno
 - Type generation
 - Code re-use building-blocks
-- That's all
+- That's all (!)
 
 ---
 
@@ -301,38 +386,42 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 }
 </style>
 
-|                      	| Helm  	|  Kustomize 	|  
-|----------------------	|-------	|-----------	|
-| ## Composition        |   	    |           	|   
-| ### Code-Reuse        |   	    |           	|   
-| ### Abstraction       |   	    |           	|   
-| ### Parametrization   |   	    |           	|   
-| ## Correctness        |   	    |           	|   
-| ### Type-Safety       |   	    |           	|   
-| ### Testability       |   	    |           	|   
-| ## Code Sharing       |   	    |           	|   
-| Package management   	|   	    |           	|   
-| Support iterations   	|   	    |           	|   
-| Developer friendly   	|   	    |           	|   
-| Programming Language 	|   	    |           	|   
-| IDE support          	|   	    |           	|   
-| Boilerplate          	|   	    |           	|   
-| Ease of use          	|   	    |           	|   
-| Security             	|   	    |           	|   
-| Runtime              	|   	    |           	|   
-| Sandbox              	|   	    |           	|   
+|                      	| Helm  	|  Kustomize 	|   Deno 
+|----------------------	|-------	|-----------    |-------    |  
+| Composition                                                ||||   
+| Code-Reuse            |   	    |               |        	|   
+| Abstraction           |   	    |               |        	|   
+| Parametrization       |   	    |               |        	|   
+| Overlays              |           |               |           |
+| Correctness                                                ||||   
+| Type-Safety           |   	    |               |        	|   
+| Testability           |   	    |               |        	|   
+| Code Sharing                                               ||||   
+| Exteranl imports     	|           |               |           |   
+| Package management    |   	    |               |        	|   
+| Developer friendly                                         ||||   
+| Familiar PL        	|   	    |               |        	|   
+| IDE support          	|   	    |               |        	|   
+| No Boilerplate        |   	    |               |        	|   
+| Security                                                   ||||   
+| Runtime              	|   	    |               |        	|   
+| Sandbox              	|   	    |               |        	|   
 {.feature-table}
+
+
 
 ---
 
 ### Closing notes
 
---- 
+---
 
-### Deno for 
+### Deno for configuration
 
 - There are benefits of using a real programming language, for configuration
 - Especially 
+
+---
 
 ### It's done before
 
