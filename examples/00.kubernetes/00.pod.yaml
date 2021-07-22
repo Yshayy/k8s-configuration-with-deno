@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: tetris
+  labels:
+    name: tetris
+spec:
+  containers:
+  - name: tetris
+    image: bsord/tetris
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"

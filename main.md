@@ -160,7 +160,8 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 
 ---
 
-### Quick glance - Helm
+
+### ![Helm](https://helm.sh/img/helm.svg){style=width:100px;border:none;box-shadow:none;vertical-align:middle;margin-top:5px}
 
 - Template based
 - Parameterized 
@@ -171,19 +172,28 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 
 ### Helm Pros
 
-- Templating
-- Paramaritization
+- Templating & Paramaritization
 - Distributed package registry
+- CLI for managing deployment-livecycle
+- Wide adoption
 
 ---
 
 ### Helm Cons
 
-- Editing is difficult
+- Composing chart is difficult
 - Everything is text based
-- Difficult to validate
+- Hard to validate
 - Lots of duplicate parameterization with k8s
 - No idiomatic way to "patch" charts
+
+---
+
+### Helm chart size and paramater creep
+
+- Bitnami Redis chart - +200 paramaters, +200 loc
+- Nats Chart - 
+- Most paramaters overlap with k8s yamls 
 
 ---
 
@@ -237,7 +247,7 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 ### Correctness
 
 - Type safety 
-- Testability 
+- Testability   
 
 ---
 
@@ -278,6 +288,23 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
     font-size: 16px;   
 }
 
+.feature-table td.r0{
+    background-color:#475248;
+}
+
+.feature-table td.r1{
+    background-color:#BF3C3A;
+}
+
+.feature-table td.r2{
+    background-color:#FBD431;
+}
+
+.feature-table td.r3{
+    background-color:#85c23d;
+}
+
+
 .feature-table td[colspan] {
     background-color:black;
     color: white;
@@ -289,23 +316,23 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 |                      	| Helm  	|  Kustomize 	|  
 |----------------------	|-------	|-----------	|
 | Composition                                     |||   
-| Code-Reuse            |   	    |           	|   
-| Abstraction           |   	    |           	|   
-| Parametrization       |   	    |           	|   
-| Overlays              |           |               |
+| Code-Reuse            | {.r2}  	|           	|   
+| Abstraction           | {.r1}  	|           	|   
+| Parametrization       | {.r2}  	|           	|   
+| Overlays              | {.r0}     |               |
 | Correctness                                     |||   
-| Type-Safety           |   	    |           	|   
-| Testability           |   	    |           	|   
+| Type-Safety           | {.r1}     |           	|   
+| Testability           | {.r2}     |           	|   
 | Code Sharing                                    |||   
-| Exteranl imports     	|           |               |   
-| Package management    |   	    |           	|   
+| External imports     	| {.r2}     |               |   
+| Package management    | {.r3}     |           	|   
 | Developer friendly                              |||   
-| Familiar PL        	|   	    |           	|   
-| IDE support          	|   	    |           	|   
-| No Boilerplate        |   	    |           	|   
+| Familiar PL        	| {.r2}     |           	|   
+| IDE support          	| {.r2}     |           	|   
+| No Boilerplate        | {.r1}     |           	|   
 | Security                                        |||   
-| Runtime              	|   	    |           	|   
-| Sandbox              	|   	    |           	|   
+| Sandbox              	| {.r0}     |           	|   
+| Static-Analysis       | {.r2}     |               |
 {.feature-table}
 
 ---
@@ -409,17 +436,17 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 {.feature-table}
 
 
-
 ---
 
 ### Closing notes
 
 ---
 
-### Deno for configuration
+<!-- .slide: class="main" -->
 
-- There are benefits of using a real programming language, for configuration
-- Especially 
+
+#### There are manyy benefits of using a real programming language for configuration
+
 
 ---
 

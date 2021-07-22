@@ -5,11 +5,17 @@
     "dockerFile": "Dockerfile",
 
     // Set *default* container specific settings.json values on container create.
-	"settings": {},
+	"settings": {
+        "deno.enable" : true,
+        "deno.unstable": true
+    },
 	
     // Add the IDs of extensions you want installed when the container is created.
     "extensions": [
-        "denoland.vscode-deno"
+        "denoland.vscode-deno",
+        "evilz.vscode-reveal",
+        "ms-kubernetes-tools.vscode-kubernetes-tools",
+        "redhat.vscode-yaml"
     ],
 
     // Use 'forwardPorts' to make a list of ports inside the container available locally.
@@ -20,6 +26,7 @@
 
 	// Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
 	"remoteUser": "vscode",
+    "postCreateCommand": [".devcontainer/init-k3d.ts"],
     "runArgs": ["--init", "--privileged"],
     "overrideCommand": false
 }
