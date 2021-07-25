@@ -5,7 +5,7 @@ import * as k8s from "https://deno.land/x/deploykit@0.0.20/generated/k8s/v1.18.3
 type MicroserviceOptions = {
     name: string,
     image: string,
-    envVariables?: {
+    env?: {
         [name:string]: string
     }
     service?: {
@@ -63,8 +63,14 @@ export class Microservice{
                 }
             }
         })
+        if (options.env){
+            this.deployment.spec.template.spec.containers[0].env = Object.entries(options.env).map(([name, value])=> ({
+                name,
+                value
+            }))
+        }
         if (options.service){
-            this.deployment.spec!.template.spec!.containers[0].ports = [{containerPort: options.service.port }]
+            this.deployment.spec.template.spec.containers[0].ports = [{containerPort: options.service.port }]
             this.service = k8s.core.v1.createService({
                 metadata: this.#getMetaData(),
                 spec: {
