@@ -399,6 +399,15 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 
 ---
 
+### Not all is perfect
+
+- Need to use some code-generation for getting k8s types
+- K8S OpenAPI defintions are not always reliable for validation
+- Typescript type-system is not sound
+- Missing standard and utility libaries for this case
+
+---
+
 ### Questions
 
 ---
