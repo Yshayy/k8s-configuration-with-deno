@@ -1,6 +1,5 @@
 import { Microservice } from "./utils/microservice.ts";
 
-
 const service = new Microservice({
   name: "tetris",
   image: "bsord/tetris",
@@ -11,7 +10,5 @@ const service = new Microservice({
     }
   }
 })
-
-service.deployment.spec.template.spec.restartPolicy = "Never"
 
 console.log(service.yaml())

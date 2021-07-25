@@ -10,7 +10,6 @@ center: false
 ### Experimenting with Deno  
 ### for easier k8s deployments
 
-
 <div style="text-align:center">
 <div>Yshay Yaacobi</div>
 <div>@yshayy</div>
@@ -27,8 +26,7 @@ center: false
 
 ---
 
-
-### ![Kubernetes](https://kubernetes.io/images/favicon.png){style=width:80px;border:none;box-shadow:none;vertical-align:middle;margin-top:5px} Kubernetes
+### ![Kubernetes](https://kubernetes.io/images/favicon.png){style=width:80px;border:none;box-shadow:none;vertical-align:middle;margin-top:5px} Kubernete s
 
 * Created by Google, backed by all major cloud providers
 * The heart of the "cloud-native" ecosystem
@@ -76,7 +74,7 @@ center: false
 - Quick recap of kubernetes resource model <icon/>
 - YAMLs, Helm and the mess we're in <icon/>
 - Deno for the resque <icon/>
-- Summary and notes <icon/>
+- Summart & Questions
 
 <!-- 3m --->
 
@@ -100,23 +98,29 @@ center: false
 
 ---
 
+<!-- .slide: data-visibility="hidden" -->
+
 #### Let's start with running something simple
 
 - Pod
 
 ---
 
+<!-- .slide: data-visibility="hidden" -->
+
 #### Now let's add more stuff
 
 - Deployment 
 - Service {.fragment}
-- ConfigMap {.fragment}
 - Ingress {.fragment}
+- ConfigMap {.fragment}
 - Secrets {.fragment}
 - PVCs {.fragment}
 - PDBs {.fragment}
 
 ---
+
+<!-- .slide: data-visibility="hidden" -->
 
 #### And then, there are Custom Resources
 
@@ -140,7 +144,7 @@ center: false
 #### Can it be simpler, sander and less bloated?
 
 - Well... Yes, Probably
-- Many have tried
+- Many have tried, and are keep trying
 
 ---
 
@@ -164,18 +168,17 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 ### ![Helm](https://helm.sh/img/helm.svg){style=width:100px;border:none;box-shadow:none;vertical-align:middle;margin-top:5px}
 
 - Template based
-- Parameterized 
-- DEMO: Simple chart example
-- DEMO: Complex chart example
+- Parameterized
+- Charts
+- Chart + configuration = release
 
 ---
 
 ### Helm Pros
 
-- Templating & Paramaritization
+- Mature and has wide adoption
 - Distributed package registry
 - CLI for managing deployment-livecycle
-- Wide adoption
 
 ---
 
@@ -185,7 +188,6 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 - Everything is text based
 - Hard to validate
 - Lots of duplicate parameterization with k8s
-- No idiomatic way to "patch" charts
 
 ---
 
@@ -209,7 +211,7 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 ### Kustomize Pros
 
 - Simple, no need to learn new stuff
-- Lots of utility methods
+- Utility functions
 - Built-in with kubectl (-k)
 
 ---
@@ -221,6 +223,8 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 ---
 
 ### Helm + Kustomize toghter
+
+- With helm post-rendering
 
 ---
 
@@ -238,8 +242,8 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 
 ### Composition
 
-- Code reuse - ability to reuse definitions or functions in different places
 - Abstraction - ability to create high level pieces
+- Code reuse - ability to reuse definitions or functions in different places
 - Parametrization - ability to reuse definitions with different paramaters
 
 ---
@@ -262,7 +266,7 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 
 - Familiar Programming language 
 - IDE Support
-- No boilerplact
+- Minimal boilerplate
 
 ---
 
@@ -350,7 +354,7 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 ### Typescript
 
 - Superset of javascript
-- Extremly strong type-system
+- Extremly powerful type-system
 
 ---
 
@@ -392,6 +396,10 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 - Type generation
 - Code re-use building-blocks
 - That's all (!)
+
+---
+
+### Questions
 
 ---
 
@@ -438,22 +446,21 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 
 ---
 
-### Closing notes
+### Summary
 
 ---
 
 <!-- .slide: class="main" -->
 
 
-#### There are manyy benefits of using a real programming language for configuration
-
+#### There are many benefits of using a real programming language for configuration
 
 ---
 
-### It's done before
+### It was done before
 
 - Pulumi
-- Amazon CDK, CDK8S
+- AWS CDK, CDK8S
 - JKCfg
 
 ---
@@ -462,8 +469,9 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 
 - No dependencies
 - No boilerplate
-- Strong security
+- Strong and flexible security
 - Easiest code-reuse
+- Good ecosystem
 
 ---
 
@@ -471,7 +479,7 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 
 ---
 
-### Not necessarily for k8s
+### Not necessarily only for k8s
 
 - CloudFormation for AWS
 - ARM for Azure
@@ -483,7 +491,12 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 ### What's the future holds
 
 - Dhall
-- CUE
+- CUE (and Dagger)
+
+---
+
+#### Your k8s deployment 
+#### Can and should be a lot simpler
 
 ---
 

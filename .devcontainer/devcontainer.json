@@ -7,15 +7,18 @@
     // Set *default* container specific settings.json values on container create.
 	"settings": {
         "deno.enable" : true,
-        "deno.unstable": true
+        "deno.unstable": true,
+        "vs-kubernetes": {
+            "disable-linters":["resource-limits"],
+        }
     },
 	
     // Add the IDs of extensions you want installed when the container is created.
     "extensions": [
         "denoland.vscode-deno",
         "evilz.vscode-reveal",
+        "redhat.vscode-yaml",
         "ms-kubernetes-tools.vscode-kubernetes-tools",
-        "redhat.vscode-yaml"
     ],
 
     // Use 'forwardPorts' to make a list of ports inside the container available locally.
