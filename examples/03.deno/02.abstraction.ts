@@ -1,6 +1,6 @@
 import { Microservice } from "./utils/microservice.ts";
 
-const service = new Microservice({
+export const service = new Microservice({
   name: "tetris",
   image: "bsord/tetris",
   service: {

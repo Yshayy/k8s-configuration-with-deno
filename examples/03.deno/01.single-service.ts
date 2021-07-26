@@ -10,62 +10,63 @@ const metadata = {
   labels,
 };
 
-const deployment = k8s.api.apps.v1.createDeployment({
-  metadata,
-  spec: {
-    selector: {
-      matchLabels: labels,
-    },
-    template: {
-      metadata: {
-        labels: labels,
+export const tetris = {
+  deployment: k8s.api.apps.v1.createDeployment({
+    metadata,
+    spec: {
+      selector: {
+        matchLabels: labels,
       },
-      spec: {
-        containers: [{
-          name: appName,
-          image: image,
-        }],
+      template: {
+        metadata: {
+          labels: labels,
+        },
+        spec: {
+          containers: [{
+            name: appName,
+            image: image,
+          }],
+        },
       },
     },
-  },
-});
-
-const service = k8s.api.core.v1.createService({
-  metadata,
-  spec: {
-    selector: labels,
-    ports: [{
-      port: 80,
-      targetPort: 8080,
-    }],
-  },
-});
-
-const ingress = k8s.api.networking.v1beta1.createIngress({
-  metadata,
-  spec: {
-    rules: [{
-      host: "tetris.localtest.me",
-      http: {
-        paths: [
-          {
-            pathType: "prefix",
-            path: "/",
-            backend: {
-              serviceName: "tetris",
+  }),
+  service:k8s.api.core.v1.createService({
+    metadata,
+    spec: {
+      selector: labels,
+      ports: [{
+        port: 80,
+        targetPort: 8080,
+      }],
+    },
+  }),
+  ingress: k8s.api.networking.v1beta1.createIngress({
+    metadata,
+    spec: {
+      rules: [{
+        host: "tetris.localtest.me",
+        http: {
+          paths: [
+            {
+              pathType: "Prefix",
+              path: "/",
+              backend: {
+                serviceName: appName,
+                servicePort: 80
+              },
             },
-          },
-        ],
-      },
-    }],
-  },
-});
+          ],
+        },
+      }],
+    },
+  })
+}
 
 console.log(
   [
-    stringify(deployment, { noRefs: true }),
-    stringify(ingress, { noRefs: true }),
-    stringify(service, { noRefs: true }),
+    stringify(tetris.deployment, { noRefs: true }),
+    stringify(tetris.ingress, { noRefs: true }),
+    stringify(tetris.service, { noRefs: true }),
   ]
     .join("\n---\n"),
 );
