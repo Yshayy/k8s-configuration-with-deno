@@ -1,5 +1,5 @@
 import { stringify } from "https://deno.land/std@0.102.0/encoding/yaml.ts";
-import { createNamespace } from "https://deno.land/x/deploykit@0.0.20/generated/k8s/v1.18.3/api/core/v1/mod.ts";
+import { createNamespace } from "https://deno.land/x/deploykit@0.0.22/generated/k8s/v1.18.3/api/core/v1/mod.ts";
 import { Microservice } from "./utils/microservice.ts";
 import { setNamespace } from "./utils/utils.ts";
 
