@@ -4,7 +4,7 @@ import {
 } from "https://deno.land/std@0.103.0/testing/asserts.ts";
 import { tetris } from "./01.single-service.ts";
 
-Deno.test("Tetris Service should expose container port 8080 on hostname tetris.localtest.me", () => {
+Deno.test("Tetris Service should expose container port 80 on hostname tetris.localtest.me", () => {
   const rule = tetris.ingress.spec.rules.find((x) =>
     x.host === "tetris.localtest.me"
   );
@@ -18,5 +18,5 @@ Deno.test("Tetris Service should expose container port 8080 on hostname tetris.l
     x.port === rootPath.backend.servicePort
   );
   assertExists(servicePort, "missing service port");
-  assertEquals(servicePort.targetPort, 8080 )
+  assertEquals(servicePort.targetPort, 80 )
 });

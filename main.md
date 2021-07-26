@@ -160,17 +160,19 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 
 <!-- .slide: class="main" -->
 
-### Let's grab a look at the popular ones
+### Let's take a look at the popular ones
 
 ---
 
 
 ### ![Helm](https://helm.sh/img/helm.svg){style=width:100px;border:none;box-shadow:none;vertical-align:middle;margin-top:5px}
 
-- Template based
 - Parameterized
-- Charts
-- Chart + configuration = release
+- Template based
+
+---
+
+### ![Helm](https://helm.sh/img/helm.svg){style=width:100px;border:none;box-shadow:none;vertical-align:middle;margin-top:5px} Demo
 
 ---
 
@@ -193,44 +195,51 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 
 ### Helm chart size and paramater creep
 
-- Bitnami Redis chart - +200 paramaters, +200 loc
-- Nats Chart - 
+- Bitnami Redis chart (+200 paramaters, +3000 loc)
+- NATs offical chart (+100 paramaters, +1000 loc)
 - Most paramaters overlap with k8s yamls 
 
 ---
 
 <!-- .slide: class="main" -->
 
-### Quick glance - Kustomize
+#### Quick glance - Kustomize
 
 - Overlay instead of parameterization 
 - DEMO: Simple overlay
 
 ---
 
-### Kustomize Pros
+#### Kustomize - demo
+
+---
+
+#### Kustomize Pros
 
 - Simple, no need to learn new stuff
 - Utility functions
+- Understand YAML semantics
 - Built-in with kubectl (-k)
 
 ---
 
-### Kustomize Cons
+#### Kustomize Cons
 
 - Limited
 
 ---
 
-### Helm + Kustomize toghter
+#### Helm + Kustomize toghter
 
 - With helm post-rendering
+- We can used Helm charts + Kustomize overlays
+- 🤯 🤯 🤯 
 
 ---
 
 <!-- .slide: class="main" -->
 
-### Let's step back
+### Let's take a step back
 
 ---
 
@@ -240,7 +249,7 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 
 ---
 
-### Composition
+#### Composition
 
 - Abstraction - ability to create high level pieces
 - Code reuse - ability to reuse definitions or functions in different places
@@ -248,21 +257,21 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 
 ---
 
-### Correctness
+#### Correctness
 
 - Type safety 
 - Testability   
 
 ---
 
-### Code Sharing
+#### Code Sharing
 
 - External imports
 - Package management
 
 ---
 
-### Developer friendly
+#### Developer friendly
 
 - Familiar Programming language 
 - IDE Support
@@ -270,7 +279,7 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 
 ---
 
-### Security
+#### Security
 
 ---
 
@@ -358,6 +367,8 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 
 ---
 
+<!-- .slide: data-visibility="hidden" -->
+
 ### Let's create a k8s Objects
 
 - Pod
@@ -366,11 +377,15 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 
 ---
 
+<!-- .slide: data-visibility="hidden" -->
+
 ### Let's create high level abstraction
 
 - Application
 
 ---
+
+<!-- .slide: data-visibility="hidden" -->
 
 ### Let's create a test
 
@@ -378,13 +393,17 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 
 ---
 
+<!-- .slide: data-visibility="hidden" -->
+
 ### Importing external package
 
 - Import Example
 
 ---
 
-### And it secure
+<!-- .slide: data-visibility="hidden" -->
+
+### And it has sandbox security
 
 - Importing malicious package
 
@@ -462,7 +481,7 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 <!-- .slide: class="main" -->
 
 
-#### There are many benefits of using a real programming language for configuration
+#### There are many benefits of using a **real** programming language for configuration
 
 ---
 
@@ -484,7 +503,13 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 
 ---
 
-### Deploykit OSS
+### Deploykit
+
+- Deno-based small experimental library
+- Type generation based on k8s openapi and several CRDs
+- Basic building blocking for composition and code-reusing
+- Open source
+- https://git.io/J4XIT
 
 ---
 
@@ -493,7 +518,6 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 - CloudFormation for AWS
 - ARM for Azure
 - Deployment Manager for Google
-- HCL?
 
 ---
 

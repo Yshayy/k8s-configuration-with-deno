@@ -1,12 +1,18 @@
+import { stringify } from "https://deno.land/std@0.102.0/encoding/yaml.ts";
+import { createNamespace } from "https://deno.land/x/deploykit@0.0.20/generated/k8s/v1.18.3/api/core/v1/mod.ts";
 import { Microservice } from "./utils/microservice.ts";
 import { setNamespace } from "./utils/utils.ts";
 
+const ns = createNamespace({
+  metadata: {
+    name: "vote"
+  }
+})
 const db = new Microservice({
   name: "db",
   image: "postgres:9.4",
   env: {
-    POSTGRES_USER: "postgres",
-    POSTGRES_PASSWORD: "postgres",
+    POSTGRES_HOST_AUTH_METHOD: "trust",
   },
   service: {
     port: 5432,
@@ -65,5 +71,5 @@ const worker = new Microservice({
 });
 
 console.log(
-  [db, redis, vote, result, worker].map(setNamespace("vote")).map((x) => x.yaml()).join("\n---\n"),
+  [stringify(ns), ...([db, redis, vote, result, worker].map(setNamespace("vote")).map((x) => x.yaml()))].join("\n---\n"),
 );

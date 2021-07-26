@@ -306,7 +306,7 @@
     
         <section >
             
-            <h3><a id="user-content-kubernetes-1" class="anchor" href="#kubernetes-1" aria-hidden="true"></a><img src="https://kubernetes.io/images/favicon.png" alt="Kubernetes" style="width:80px;border:none;box-shadow:none;vertical-align:middle;margin-top:5px"> Kubernetes</h3>
+            <h3><a id="user-content-kubernete-s" class="anchor" href="#kubernete-s" aria-hidden="true"></a><img src="https://kubernetes.io/images/favicon.png" alt="Kubernetes" style="width:80px;border:none;box-shadow:none;vertical-align:middle;margin-top:5px"> Kubernete s</h3>
 <ul>
 <li>Created by Google, backed by all major cloud providers</li>
 <li>The heart of the “cloud-native” ecosystem</li>
@@ -384,7 +384,7 @@
 <li>Quick recap of kubernetes resource model <icon/></li>
 <li>YAMLs, Helm and the mess we’re in <icon/></li>
 <li>Deno for the resque <icon/></li>
-<li>Summary and notes <icon/></li>
+<li>Summart &amp; Questions</li>
 </ul>
 <!-- 3m --->
             </section>
@@ -425,9 +425,10 @@
 
 
     
-        <section >
+        <section data-visibility="hidden">
             
-            <h4><a id="user-content-lets-start-with-running-something-simple" class="anchor" href="#lets-start-with-running-something-simple" aria-hidden="true"></a>Let’s start with running something simple</h4>
+            <!-- .slide: data-visibility="hidden" -->
+<h4><a id="user-content-lets-start-with-running-something-simple" class="anchor" href="#lets-start-with-running-something-simple" aria-hidden="true"></a>Let’s start with running something simple</h4>
 <ul>
 <li>Pod</li>
 </ul>
@@ -438,14 +439,15 @@
 
 
     
-        <section >
+        <section data-visibility="hidden">
             
-            <h4><a id="user-content-now-lets-add-more-stuff" class="anchor" href="#now-lets-add-more-stuff" aria-hidden="true"></a>Now let’s add more stuff</h4>
+            <!-- .slide: data-visibility="hidden" -->
+<h4><a id="user-content-now-lets-add-more-stuff" class="anchor" href="#now-lets-add-more-stuff" aria-hidden="true"></a>Now let’s add more stuff</h4>
 <ul>
 <li>Deployment</li>
 <li class="fragment">Service</li>
-<li class="fragment">ConfigMap</li>
 <li class="fragment">Ingress</li>
+<li class="fragment">ConfigMap</li>
 <li class="fragment">Secrets</li>
 <li class="fragment">PVCs</li>
 <li class="fragment">PDBs</li>
@@ -457,9 +459,10 @@
 
 
     
-        <section >
+        <section data-visibility="hidden">
             
-            <h4><a id="user-content-and-then-there-are-custom-resources" class="anchor" href="#and-then-there-are-custom-resources" aria-hidden="true"></a>And then, there are Custom Resources</h4>
+            <!-- .slide: data-visibility="hidden" -->
+<h4><a id="user-content-and-then-there-are-custom-resources" class="anchor" href="#and-then-there-are-custom-resources" aria-hidden="true"></a>And then, there are Custom Resources</h4>
 <ul>
 <li>Monitor</li>
 <li>Function</li>
@@ -491,7 +494,7 @@
             <h4><a id="user-content-can-it-be-simpler-sander-and-less-bloated" class="anchor" href="#can-it-be-simpler-sander-and-less-bloated" aria-hidden="true"></a>Can it be simpler, sander and less bloated?</h4>
 <ul>
 <li>Well… Yes, Probably</li>
-<li>Many have tried</li>
+<li>Many have tried, and are keep trying</li>
 </ul>
 
             </section>
@@ -516,7 +519,7 @@
             
             <!-- 8.5m --->
 <!-- .slide: class="main" -->
-<h3><a id="user-content-lets-grab-a-look-at-the-popular-ones" class="anchor" href="#lets-grab-a-look-at-the-popular-ones" aria-hidden="true"></a>Let’s grab a look at the popular ones</h3>
+<h3><a id="user-content-lets-take-a-look-at-the-popular-ones" class="anchor" href="#lets-take-a-look-at-the-popular-ones" aria-hidden="true"></a>Let’s take a look at the popular ones</h3>
 
             </section>
     
@@ -526,13 +529,21 @@
     
         <section >
             
-            <h3><a id="user-content-quick-glance---helm" class="anchor" href="#quick-glance---helm" aria-hidden="true"></a>Quick glance - Helm</h3>
+            <h3><a id="user-content-" class="anchor" href="#" aria-hidden="true"></a><img src="https://helm.sh/img/helm.svg" alt="Helm" style="width:100px;border:none;box-shadow:none;vertical-align:middle;margin-top:5px"></h3>
 <ul>
-<li>Template based</li>
 <li>Parameterized</li>
-<li>DEMO: Simple chart example</li>
-<li>DEMO: Complex chart example</li>
+<li>Template based</li>
 </ul>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3><a id="user-content-demo" class="anchor" href="#demo" aria-hidden="true"></a><img src="https://helm.sh/img/helm.svg" alt="Helm" style="width:100px;border:none;box-shadow:none;vertical-align:middle;margin-top:5px"> Demo</h3>
 
             </section>
     
@@ -544,9 +555,9 @@
             
             <h3><a id="user-content-helm-pros" class="anchor" href="#helm-pros" aria-hidden="true"></a>Helm Pros</h3>
 <ul>
-<li>Templating</li>
-<li>Paramaritization</li>
+<li>Mature and has wide adoption</li>
 <li>Distributed package registry</li>
+<li>CLI for managing deployment-livecycle</li>
 </ul>
 
             </section>
@@ -559,11 +570,25 @@
             
             <h3><a id="user-content-helm-cons" class="anchor" href="#helm-cons" aria-hidden="true"></a>Helm Cons</h3>
 <ul>
-<li>Editing is difficult</li>
+<li>Composing chart is difficult</li>
 <li>Everything is text based</li>
-<li>Difficult to validate</li>
+<li>Hard to validate</li>
 <li>Lots of duplicate parameterization with k8s</li>
-<li>No idiomatic way to “patch” charts</li>
+</ul>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3><a id="user-content-helm-chart-size-and-paramater-creep" class="anchor" href="#helm-chart-size-and-paramater-creep" aria-hidden="true"></a>Helm chart size and paramater creep</h3>
+<ul>
+<li>Bitnami Redis chart (+200 paramaters, +3000 loc)</li>
+<li>NATs offical chart (+100 paramaters, +1000 loc)</li>
+<li>Most paramaters overlap with k8s yamls</li>
 </ul>
 
             </section>
@@ -575,7 +600,7 @@
         <section class="main">
             
             <!-- .slide: class="main" -->
-<h3><a id="user-content-quick-glance---kustomize" class="anchor" href="#quick-glance---kustomize" aria-hidden="true"></a>Quick glance - Kustomize</h3>
+<h4><a id="user-content-quick-glance---kustomize" class="anchor" href="#quick-glance---kustomize" aria-hidden="true"></a>Quick glance - Kustomize</h4>
 <ul>
 <li>Overlay instead of parameterization</li>
 <li>DEMO: Simple overlay</li>
@@ -589,10 +614,21 @@
     
         <section >
             
-            <h3><a id="user-content-kustomize-pros" class="anchor" href="#kustomize-pros" aria-hidden="true"></a>Kustomize Pros</h3>
+            <h4><a id="user-content-kustomize---demo" class="anchor" href="#kustomize---demo" aria-hidden="true"></a>Kustomize - demo</h4>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4><a id="user-content-kustomize-pros" class="anchor" href="#kustomize-pros" aria-hidden="true"></a>Kustomize Pros</h4>
 <ul>
 <li>Simple, no need to learn new stuff</li>
-<li>Lots of utility methods</li>
+<li>Utility functions</li>
+<li>Understand YAML semantics</li>
 <li>Built-in with kubectl (-k)</li>
 </ul>
 
@@ -604,7 +640,7 @@
     
         <section >
             
-            <h3><a id="user-content-kustomize-cons" class="anchor" href="#kustomize-cons" aria-hidden="true"></a>Kustomize Cons</h3>
+            <h4><a id="user-content-kustomize-cons" class="anchor" href="#kustomize-cons" aria-hidden="true"></a>Kustomize Cons</h4>
 <ul>
 <li>Limited</li>
 </ul>
@@ -617,7 +653,12 @@
     
         <section >
             
-            <h3><a id="user-content-helm--kustomize-toghter" class="anchor" href="#helm--kustomize-toghter" aria-hidden="true"></a>Helm + Kustomize toghter</h3>
+            <h4><a id="user-content-helm--kustomize-toghter" class="anchor" href="#helm--kustomize-toghter" aria-hidden="true"></a>Helm + Kustomize toghter</h4>
+<ul>
+<li>With helm post-rendering</li>
+<li>We can used Helm charts + Kustomize overlays</li>
+<li>🤯 🤯 🤯</li>
+</ul>
 
             </section>
     
@@ -628,7 +669,7 @@
         <section class="main">
             
             <!-- .slide: class="main" -->
-<h3><a id="user-content-lets-step-back" class="anchor" href="#lets-step-back" aria-hidden="true"></a>Let’s step back</h3>
+<h3><a id="user-content-lets-take-a-step-back" class="anchor" href="#lets-take-a-step-back" aria-hidden="true"></a>Let’s take a step back</h3>
 
             </section>
     
@@ -649,10 +690,10 @@
     
         <section >
             
-            <h3><a id="user-content-composition" class="anchor" href="#composition" aria-hidden="true"></a>Composition</h3>
+            <h4><a id="user-content-composition" class="anchor" href="#composition" aria-hidden="true"></a>Composition</h4>
 <ul>
-<li>Code reuse - ability to reuse definitions or functions in different places</li>
 <li>Abstraction - ability to create high level pieces</li>
+<li>Code reuse - ability to reuse definitions or functions in different places</li>
 <li>Parametrization - ability to reuse definitions with different paramaters</li>
 </ul>
 
@@ -664,7 +705,7 @@
     
         <section >
             
-            <h3><a id="user-content-correctness" class="anchor" href="#correctness" aria-hidden="true"></a>Correctness</h3>
+            <h4><a id="user-content-correctness" class="anchor" href="#correctness" aria-hidden="true"></a>Correctness</h4>
 <ul>
 <li>Type safety</li>
 <li>Testability</li>
@@ -678,7 +719,7 @@
     
         <section >
             
-            <h3><a id="user-content-code-sharing" class="anchor" href="#code-sharing" aria-hidden="true"></a>Code Sharing</h3>
+            <h4><a id="user-content-code-sharing" class="anchor" href="#code-sharing" aria-hidden="true"></a>Code Sharing</h4>
 <ul>
 <li>External imports</li>
 <li>Package management</li>
@@ -692,11 +733,11 @@
     
         <section >
             
-            <h3><a id="user-content-developer-friendly" class="anchor" href="#developer-friendly" aria-hidden="true"></a>Developer friendly</h3>
+            <h4><a id="user-content-developer-friendly" class="anchor" href="#developer-friendly" aria-hidden="true"></a>Developer friendly</h4>
 <ul>
 <li>Familiar Programming language</li>
 <li>IDE Support</li>
-<li>No boilerplact</li>
+<li>Minimal boilerplate</li>
 </ul>
 
             </section>
@@ -707,7 +748,7 @@
     
         <section >
             
-            <h3><a id="user-content-security" class="anchor" href="#security" aria-hidden="true"></a>Security</h3>
+            <h4><a id="user-content-security" class="anchor" href="#security" aria-hidden="true"></a>Security</h4>
 
             </section>
     
@@ -735,6 +776,23 @@
     font-size: 16px;   
 }
 
+.feature-table td.r0{
+    background-color:#475248;
+}
+
+.feature-table td.r1{
+    background-color:#BF3C3A;
+}
+
+.feature-table td.r2{
+    background-color:#FBD431;
+}
+
+.feature-table td.r3{
+    background-color:#85c23d;
+}
+
+
 .feature-table td[colspan] {
     background-color:black;
     color: white;
@@ -756,22 +814,22 @@
 </tr>
 <tr>
 <td>Code-Reuse</td>
-<td></td>
+<td class="r2"></td>
 <td></td>
 </tr>
 <tr>
 <td>Abstraction</td>
-<td></td>
+<td class="r1"></td>
 <td></td>
 </tr>
 <tr>
 <td>Parametrization</td>
-<td></td>
+<td class="r2"></td>
 <td></td>
 </tr>
 <tr>
 <td>Overlays</td>
-<td></td>
+<td class="r0"></td>
 <td></td>
 </tr>
 <tr>
@@ -779,25 +837,25 @@
 </tr>
 <tr>
 <td>Type-Safety</td>
-<td></td>
+<td class="r1"></td>
 <td></td>
 </tr>
 <tr>
 <td>Testability</td>
-<td></td>
+<td class="r2"></td>
 <td></td>
 </tr>
 <tr>
 <td colspan="3">Code Sharing</td>
 </tr>
 <tr>
-<td>Exteranl imports</td>
-<td></td>
+<td>External imports</td>
+<td class="r2"></td>
 <td></td>
 </tr>
 <tr>
 <td>Package management</td>
-<td></td>
+<td class="r3"></td>
 <td></td>
 </tr>
 <tr>
@@ -805,30 +863,30 @@
 </tr>
 <tr>
 <td>Familiar PL</td>
-<td></td>
+<td class="r2"></td>
 <td></td>
 </tr>
 <tr>
 <td>IDE support</td>
-<td></td>
+<td class="r2"></td>
 <td></td>
 </tr>
 <tr>
 <td>No Boilerplate</td>
-<td></td>
+<td class="r1"></td>
 <td></td>
 </tr>
 <tr>
 <td colspan="3">Security</td>
 </tr>
 <tr>
-<td>Runtime</td>
-<td></td>
+<td>Sandbox</td>
+<td class="r0"></td>
 <td></td>
 </tr>
 <tr>
-<td>Sandbox</td>
-<td></td>
+<td>Static-Analysis</td>
+<td class="r2"></td>
 <td></td>
 </tr>
 </tbody>
@@ -868,7 +926,7 @@
             <h3><a id="user-content-typescript" class="anchor" href="#typescript" aria-hidden="true"></a>Typescript</h3>
 <ul>
 <li>Superset of javascript</li>
-<li>Extremly strong type-system</li>
+<li>Extremly powerful type-system</li>
 </ul>
 
             </section>
@@ -877,9 +935,10 @@
 
 
     
-        <section >
+        <section data-visibility="hidden">
             
-            <h3><a id="user-content-lets-create-a-k8s-objects" class="anchor" href="#lets-create-a-k8s-objects" aria-hidden="true"></a>Let’s create a k8s Objects</h3>
+            <!-- .slide: data-visibility="hidden" -->
+<h3><a id="user-content-lets-create-a-k8s-objects" class="anchor" href="#lets-create-a-k8s-objects" aria-hidden="true"></a>Let’s create a k8s Objects</h3>
 <ul>
 <li>Pod</li>
 <li>Service</li>
@@ -892,9 +951,10 @@
 
 
     
-        <section >
+        <section data-visibility="hidden">
             
-            <h3><a id="user-content-lets-create-high-level-abstraction" class="anchor" href="#lets-create-high-level-abstraction" aria-hidden="true"></a>Let’s create high level abstraction</h3>
+            <!-- .slide: data-visibility="hidden" -->
+<h3><a id="user-content-lets-create-high-level-abstraction" class="anchor" href="#lets-create-high-level-abstraction" aria-hidden="true"></a>Let’s create high level abstraction</h3>
 <ul>
 <li>Application</li>
 </ul>
@@ -905,9 +965,10 @@
 
 
     
-        <section >
+        <section data-visibility="hidden">
             
-            <h3><a id="user-content-lets-create-a-test" class="anchor" href="#lets-create-a-test" aria-hidden="true"></a>Let’s create a test</h3>
+            <!-- .slide: data-visibility="hidden" -->
+<h3><a id="user-content-lets-create-a-test" class="anchor" href="#lets-create-a-test" aria-hidden="true"></a>Let’s create a test</h3>
 <ul>
 <li></li>
 </ul>
@@ -918,9 +979,10 @@
 
 
     
-        <section >
+        <section data-visibility="hidden">
             
-            <h3><a id="user-content-importing-external-package" class="anchor" href="#importing-external-package" aria-hidden="true"></a>Importing external package</h3>
+            <!-- .slide: data-visibility="hidden" -->
+<h3><a id="user-content-importing-external-package" class="anchor" href="#importing-external-package" aria-hidden="true"></a>Importing external package</h3>
 <ul>
 <li>Import Example</li>
 </ul>
@@ -931,9 +993,10 @@
 
 
     
-        <section >
+        <section data-visibility="hidden">
             
-            <h3><a id="user-content-and-it-secure" class="anchor" href="#and-it-secure" aria-hidden="true"></a>And it secure</h3>
+            <!-- .slide: data-visibility="hidden" -->
+<h3><a id="user-content-and-it-has-sandbox-security" class="anchor" href="#and-it-has-sandbox-security" aria-hidden="true"></a>And it has sandbox security</h3>
 <ul>
 <li>Importing malicious package</li>
 </ul>
@@ -953,6 +1016,32 @@
 <li>Code re-use building-blocks</li>
 <li>That’s all (!)</li>
 </ul>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3><a id="user-content-not-all-is-perfect" class="anchor" href="#not-all-is-perfect" aria-hidden="true"></a>Not all is perfect</h3>
+<ul>
+<li>Need to use some code-generation for getting k8s types</li>
+<li>K8S OpenAPI defintions are not always reliable for validation</li>
+<li>Typescript type-system is not sound</li>
+<li>Missing standard and utility libaries for this case</li>
+</ul>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3><a id="user-content-questions" class="anchor" href="#questions" aria-hidden="true"></a>Questions</h3>
 
             </section>
     
@@ -1091,7 +1180,18 @@
     
         <section >
             
-            <h3><a id="user-content-closing-notes" class="anchor" href="#closing-notes" aria-hidden="true"></a>Closing notes</h3>
+            <h3><a id="user-content-summary" class="anchor" href="#summary" aria-hidden="true"></a>Summary</h3>
+
+            </section>
+    
+
+
+
+    
+        <section class="main">
+            
+            <!-- .slide: class="main" -->
+<h4><a id="user-content-there-are-many-benefits-of-using-a-real-programming-language-for-configuration" class="anchor" href="#there-are-many-benefits-of-using-a-real-programming-language-for-configuration" aria-hidden="true"></a>There are many benefits of using a <strong>real</strong> programming language for configuration</h4>
 
             </section>
     
@@ -1101,24 +1201,10 @@
     
         <section >
             
-            <h3><a id="user-content-deno-for-configuration" class="anchor" href="#deno-for-configuration" aria-hidden="true"></a>Deno for configuration</h3>
-<ul>
-<li>There are benefits of using a real programming language, for configuration</li>
-<li>Especially</li>
-</ul>
-
-            </section>
-    
-
-
-
-    
-        <section >
-            
-            <h3><a id="user-content-its-done-before" class="anchor" href="#its-done-before" aria-hidden="true"></a>It’s done before</h3>
+            <h3><a id="user-content-it-was-done-before" class="anchor" href="#it-was-done-before" aria-hidden="true"></a>It was done before</h3>
 <ul>
 <li>Pulumi</li>
-<li>Amazon CDK, CDK8S</li>
+<li>AWS CDK, CDK8S</li>
 <li>JKCfg</li>
 </ul>
 
@@ -1134,8 +1220,9 @@
 <ul>
 <li>No dependencies</li>
 <li>No boilerplate</li>
-<li>Strong security</li>
+<li>Strong and flexible security</li>
 <li>Easiest code-reuse</li>
+<li>Good ecosystem</li>
 </ul>
 
             </section>
@@ -1146,7 +1233,14 @@
     
         <section >
             
-            <h3><a id="user-content-deploykit-oss" class="anchor" href="#deploykit-oss" aria-hidden="true"></a>Deploykit OSS</h3>
+            <h3><a id="user-content-deploykit" class="anchor" href="#deploykit" aria-hidden="true"></a>Deploykit</h3>
+<ul>
+<li>Deno-based small experimental library</li>
+<li>Type generation based on k8s openapi and several CRDs</li>
+<li>Basic building blocking for composition and code-reusing</li>
+<li>Open source</li>
+<li><a href="https://git.io/J4XIT">https://git.io/J4XIT</a></li>
+</ul>
 
             </section>
     
@@ -1156,12 +1250,11 @@
     
         <section >
             
-            <h3><a id="user-content-not-necessarily-for-k8s" class="anchor" href="#not-necessarily-for-k8s" aria-hidden="true"></a>Not necessarily for k8s</h3>
+            <h3><a id="user-content-not-necessarily-only-for-k8s" class="anchor" href="#not-necessarily-only-for-k8s" aria-hidden="true"></a>Not necessarily only for k8s</h3>
 <ul>
 <li>CloudFormation for AWS</li>
 <li>ARM for Azure</li>
 <li>Deployment Manager for Google</li>
-<li>HCL?</li>
 </ul>
 
             </section>
@@ -1175,8 +1268,19 @@
             <h3><a id="user-content-whats-the-future-holds" class="anchor" href="#whats-the-future-holds" aria-hidden="true"></a>What’s the future holds</h3>
 <ul>
 <li>Dhall</li>
-<li>CUE</li>
+<li>CUE (and Dagger)</li>
 </ul>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4><a id="user-content-your-k8s-deployment" class="anchor" href="#your-k8s-deployment" aria-hidden="true"></a>Your k8s deployment</h4>
+<h4><a id="user-content-can-and-should-be-a-lot-simpler" class="anchor" href="#can-and-should-be-a-lot-simpler" aria-hidden="true"></a>Can and should be a lot simpler</h4>
 
             </section>
     

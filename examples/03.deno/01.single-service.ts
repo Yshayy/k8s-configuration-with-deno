@@ -1,7 +1,7 @@
 import * as k8s from "https://deno.land/x/deploykit@0.0.20/generated/k8s/v1.18.3/mod.ts";
 import { stringify } from "https://deno.land/std@0.102.0/encoding/yaml.ts";
 const appName = "tetris";
-const image = "bsord/tetris";
+const image = "ociotec/tetris";
 const labels = {
   app: "tetris",
 };
@@ -36,7 +36,7 @@ export const tetris = {
       selector: labels,
       ports: [{
         port: 80,
-        targetPort: 8080,
+        targetPort: 80,
       }],
     },
   }),

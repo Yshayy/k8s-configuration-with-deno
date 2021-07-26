@@ -6,7 +6,7 @@ $.shell = "/usr/bin/zsh";
 
 try {
     $.stdout = "inherit";
-    await $`k3d cluster create deno-k8s`;
+    await $`k3d cluster create -p 8081:80@loadbalancer deno-k8s`;
 } catch (ex: any){
     if (ex instanceof Error){
         if (!ex.message.includes("name already exists") ){
