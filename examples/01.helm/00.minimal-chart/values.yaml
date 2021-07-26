@@ -1,0 +1,13 @@
+replicaCount: 1
+
+image:
+  repository: tetris
+  tag: "latest"
+
+port: 80
+hostname: tetris.localtest.me 
+
+resources:
+  limits:
+    memory: "128Mi"
+    cpu: "500m"

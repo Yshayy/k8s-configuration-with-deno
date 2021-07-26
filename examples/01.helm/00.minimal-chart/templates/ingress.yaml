@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ include "tetris.fullname" . }}
+  labels:
+    {{- include "tetris.labels" . | nindent 4 }}
+spec:
+  rules:
+    - host: {{ .Values.host | quote }}
+      http:
+        paths:
+          - path: "/"
+            pathType: "Prefix"
+            backend:
+              service:
+                name: {{ include "tetris.fullname" . }}
+                port:
+                  number: {{ .Values.port }}
+              
