@@ -13,13 +13,3 @@ spec:
           limits:
             memory: "128Mi"
             cpu: "500m"
-
-#### TODO:
-#### Add HPA for pod auto-scaling
-#### Add PVC for storage (score?)
-#### Add PDB for HA
-#### Add ConfigMap for configuration
-#### Add KamusSecret/SealedSecret/Secret for storing secrets
-#### Add Monitor for monitoring...
-#### Add service mesh configuration
-#### Add....

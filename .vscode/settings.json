@@ -10,7 +10,7 @@
       "editor.lineHighlightBackground": "#f0f0f0",
       "editor.selectionBackground": "#aaeeff"
     },
-    "workbench.statusBar.visible": false,
+    "workbench.statusBar.visible": true,
     // "workbench.activityBar.visible": true,
     "editor.minimap.enabled": false,
     "editor.renderWhitespace": "none",
@@ -20,6 +20,7 @@
     "terminal.integrated.fontWeight": "800",
     "terminal.integrated.fontSize": 14,
     "cSpell.words": [
-      "Kubernetes"
+      "Kubernetes",
+      "Livecycle"
     ]
 }

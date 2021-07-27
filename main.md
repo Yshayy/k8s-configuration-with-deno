@@ -12,7 +12,7 @@ center: false
 
 
 Yshay Yaacobi  
-yshay@livecycle.io
+yshay@livecycle.io  
 @yshayy  
 https://git.io/J49q9  
 
@@ -46,7 +46,7 @@ https://git.io/J49q9
 
 - Created by Ryan Dahl (Node.js creator)
 - Secure runtime for typescript/javascript
-- Inspired by browser APIs and Go ecosystem/tooling
+- Inspired by browser APIs and the Go ecosystem/tooling
 - The next evolution of Node.js (?)
 
 ---
@@ -71,7 +71,7 @@ yshay@livecycle.io
 
 ### About me 
 
-- CTO of livecycle
+- CTO of Livecycle
 - Software engineer
 - Heavily used kubernetes in the past 5 years
 - OSS Maintainer of Tweek (git.io/tweek)
@@ -82,8 +82,8 @@ yshay@livecycle.io
 
 - Quick recap of kubernetes resource model
 - YAMLs, Helm and the mess we're in
-- Deno for the resque
-- Summart & Questions
+- Deployment configuration in Deno
+- Summary
 
 <!-- 3m --->
 
@@ -175,6 +175,7 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 
 - Parameterized
 - Template based
+- Distributed Chart registries
 
 ---
 
@@ -185,8 +186,9 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 #### Helm Pros
 
 - Mature and has wide adoption
-- Distributed package registries with thousands of charts
-- CLI for managing deployment-livecycle
+- Thousands of public charts available
+- CLI for managing deployment lifecycle
+- Charts for anything
 
 ---
 
@@ -449,16 +451,16 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 
 ---
 
-### Not all is perfect
+### Questions
+
+---
+
+#### Not perfect (Yet...)
 
 - Need to use some code-generation for getting k8s types
 - K8S OpenAPI defintions are not always reliable for validation
 - Typescript type-system is not sound
 - Missing standard and utility libaries for this case
-
----
-
-### Questions
 
 ---
 
@@ -484,7 +486,7 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 | Security                                                     ||||   
 | Runtime              	| {.r3}     |  {.r3}        |  {.r2}  |   |  
 | Code Analysis         | {.r2}     |  {.r2}        |  {.r3}  |   |
-{.feature-table .c4}
+{.feature-table}
 
 ---
 

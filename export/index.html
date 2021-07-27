@@ -279,11 +279,11 @@
 <link rel="stylesheet" type="text/css" href="./livecycle.css" />
 <h3><a id="user-content-experimenting-with-deno" class="anchor" href="#experimenting-with-deno" aria-hidden="true"></a>Experimenting with Deno</h3>
 <h3><a id="user-content-for-easier-k8s-deployments" class="anchor" href="#for-easier-k8s-deployments" aria-hidden="true"></a>for easier k8s deployments</h3>
-<div style="text-align:center">
-<div>Yshay Yaacobi</div>
-<div>@yshayy</div>
-<div>https://git.io/fxh57</div>
-</div>
+<p>Yshay Yaacobi<br>
+<a href="mailto:yshay@livecycle.io">yshay@livecycle.io</a><br>
+@yshayy<br>
+<a href="https://git.io/J49q9">https://git.io/J49q9</a></p>
+
             </section>
     
 
@@ -306,7 +306,7 @@
     
         <section >
             
-            <h3><a id="user-content-kubernete-s" class="anchor" href="#kubernete-s" aria-hidden="true"></a><img src="https://kubernetes.io/images/favicon.png" alt="Kubernetes" style="width:80px;border:none;box-shadow:none;vertical-align:middle;margin-top:5px"> Kubernete s</h3>
+            <h3><a id="user-content-kubernetes-1" class="anchor" href="#kubernetes-1" aria-hidden="true"></a><img src="https://kubernetes.io/images/favicon.png" alt="Kubernetes" style="width:80px;border:none;box-shadow:none;vertical-align:middle;margin-top:5px"> Kubernetes</h3>
 <ul>
 <li>Created by Google, backed by all major cloud providers</li>
 <li>The heart of the “cloud-native” ecosystem</li>
@@ -338,6 +338,8 @@
             <h3><a id="user-content-deno-1" class="anchor" href="#deno-1" aria-hidden="true"></a><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Deno.svg/1200px-Deno.svg.png" alt="Deno" style="width:100px;border:none;box-shadow:none;vertical-align:middle;margin-top:5px"> Deno</h3>
 <ul>
 <li>Created by Ryan Dahl (Node.js creator)</li>
+<li>Secure runtime for typescript/javascript</li>
+<li>Inspired by browser APIs and the Go ecosystem/tooling</li>
 <li>The next evolution of Node.js (?)</li>
 </ul>
 
@@ -351,7 +353,7 @@
             
             <!-- .slide: class="main" -->
 <h3><a id="user-content-experimenting-with-deno-1" class="anchor" href="#experimenting-with-deno-1" aria-hidden="true"></a>Experimenting with Deno</h3>
-<h3><a id="user-content-for-easier-k8s-deployments-" class="anchor" href="#for-easier-k8s-deployments-" aria-hidden="true"></a>for easier k8s deployments (?!)</h3>
+<h3><a id="user-content-for-easier-k8s-deployments-" class="anchor" href="#for-easier-k8s-deployments-" aria-hidden="true"></a>for easier k8s deployments? 🤔</h3>
 <!-- 2m --->
             </section>
     
@@ -361,14 +363,17 @@
     
         <section >
             
-            <p><img src="https://github.com/yshayy.png?size=150" alt="Yshay Yaacobi" style="float:right;margin-right:40px;border-radius:75px;border:none"></p>
+            <div style="float:right;font-size:18px;margin-right:40px">
+<p><img src="https://github.com/yshayy.png?size=150" alt="Yshay Yaacobi" style="border-radius:75px;border:none"></p>
+<p><a href="mailto:yshay@livecycle.io">yshay@livecycle.io</a><br>
+@yshayy</p>
+</div>
 <h3><a id="user-content-about-me" class="anchor" href="#about-me" aria-hidden="true"></a>About me</h3>
 <ul>
-<li>CTO of livecycle</li>
-<li>Full-Stack engineer</li>
+<li>CTO of Livecycle</li>
+<li>Software engineer</li>
 <li>Heavily used kubernetes in the past 5 years</li>
 <li>OSS Maintainer of Tweek (<a href="http://git.io/tweek">git.io/tweek</a>)</li>
-<li>Ex-Prinicipal Enginner at Soluto</li>
 </ul>
 
             </section>
@@ -381,10 +386,10 @@
             
             <h3><a id="user-content-agenda" class="anchor" href="#agenda" aria-hidden="true"></a>Agenda</h3>
 <ul>
-<li>Quick recap of kubernetes resource model <icon/></li>
-<li>YAMLs, Helm and the mess we’re in <icon/></li>
-<li>Deno for the resque <icon/></li>
-<li>Summart &amp; Questions</li>
+<li>Quick recap of kubernetes resource model</li>
+<li>YAMLs, Helm and the mess we’re in</li>
+<li>Deployment configuration in Deno</li>
+<li>Summary</li>
 </ul>
 <!-- 3m --->
             </section>
@@ -396,12 +401,7 @@
         <section >
             
             <h3><a id="user-content-kubernetes-resource-model" class="anchor" href="#kubernetes-resource-model" aria-hidden="true"></a>Kubernetes Resource Model</h3>
-<ul>
-<li>Resources</li>
-<li>Controllers</li>
-<li>…</li>
-<li>Profit 💵💵</li>
-</ul>
+<p><img src="https://github.com/kubernetes/community/raw/master/contributors/design-proposals/architecture/images/apiserver.png" alt="architecture" style="border:none"></p>
 
             </section>
     
@@ -413,10 +413,11 @@
             
             <h3><a id="user-content-declarative-awesome" class="anchor" href="#declarative-awesome" aria-hidden="true"></a>Declarative, awesome</h3>
 <ul>
-<li>Everything is a resource</li>
+<li>Everything is a <strong>resource</strong></li>
 <li>Every resource described with YAML/JSON</li>
-<li>Extensible</li>
-<li>Support extremely complex workloads</li>
+<li>Extensible (Custom Resources)</li>
+<li>Supports variety of resources</li>
+<li>Supports extremely complex workloads</li>
 </ul>
 
             </section>
@@ -494,7 +495,7 @@
             <h4><a id="user-content-can-it-be-simpler-sander-and-less-bloated" class="anchor" href="#can-it-be-simpler-sander-and-less-bloated" aria-hidden="true"></a>Can it be simpler, sander and less bloated?</h4>
 <ul>
 <li>Well… Yes, Probably</li>
-<li>Many have tried, and are keep trying</li>
+<li>There are many tools &amp; solution for this problem</li>
 </ul>
 
             </section>
@@ -506,7 +507,7 @@
         <section >
             
             <h4><a id="user-content-so-many" class="anchor" href="#so-many" aria-hidden="true"></a>SO Many…</h4>
-<p style="font-size:20px">Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, Kapitan, Konfd, Templates/Ktmpl, Fabric8 client, Kubegen, kenv, Ansible, Puppet, KPM, Nulecule, Kedge (OpenCompose is deprecated), Chartify, Podex, k8sec, kb80r, k8s-kotlin-dsl, KY, Kploy, Kdeploy, Kubernetes-deploy, Generator-kubegen, K8comp, Kontemplate, Kexpand, Forge, Psykube, Koki, Deploymentizer, generator-kubegen, Broadway, Srvexpand, Rok8s-scripts, ERB-Hiera, k8s-icl, sed, envsubst, Jinja, spiff</p>
+<p style="font-size:26px">Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, Kapitan, Konfd, Templates/Ktmpl, Fabric8 client, Kubegen, kenv, Ansible, Puppet, KPM, Nulecule, Kedge (OpenCompose is deprecated), Chartify, Podex, k8sec, kb80r, k8s-kotlin-dsl, KY, Kploy, Kdeploy, Kubernetes-deploy, Generator-kubegen, K8comp, Kontemplate, Kexpand, Forge, Psykube, Koki, Deploymentizer, generator-kubegen, Broadway, Srvexpand, Rok8s-scripts, ERB-Hiera, k8s-icl, sed, envsubst, Jinja, spiff</p>
 <p style="font-size:14px">(taken from <a href="https://github.com/kubernetes/community/blob/master/contributors/design-proposals/architecture/declarative-application-management.md">https://github.com/kubernetes/community/blob/master/contributors/design-proposals/architecture/declarative-application-management.md</a>)</p>
 
             </section>
@@ -533,6 +534,7 @@
 <ul>
 <li>Parameterized</li>
 <li>Template based</li>
+<li>Distributed Chart registries</li>
 </ul>
 
             </section>
@@ -553,11 +555,12 @@
     
         <section >
             
-            <h3><a id="user-content-helm-pros" class="anchor" href="#helm-pros" aria-hidden="true"></a>Helm Pros</h3>
+            <h4><a id="user-content-helm-pros" class="anchor" href="#helm-pros" aria-hidden="true"></a>Helm Pros</h4>
 <ul>
 <li>Mature and has wide adoption</li>
-<li>Distributed package registry</li>
-<li>CLI for managing deployment-livecycle</li>
+<li>Thousands of public charts available</li>
+<li>CLI for managing deployment lifecycle</li>
+<li>Charts for anything</li>
 </ul>
 
             </section>
@@ -568,9 +571,9 @@
     
         <section >
             
-            <h3><a id="user-content-helm-cons" class="anchor" href="#helm-cons" aria-hidden="true"></a>Helm Cons</h3>
+            <h4><a id="user-content-helm-cons" class="anchor" href="#helm-cons" aria-hidden="true"></a>Helm Cons</h4>
 <ul>
-<li>Composing chart is difficult</li>
+<li>Composing a chart is <strong>difficult</strong></li>
 <li>Everything is text based</li>
 <li>Hard to validate</li>
 <li>Lots of duplicate parameterization with k8s</li>
@@ -584,7 +587,7 @@
     
         <section >
             
-            <h3><a id="user-content-helm-chart-size-and-paramater-creep" class="anchor" href="#helm-chart-size-and-paramater-creep" aria-hidden="true"></a>Helm chart size and paramater creep</h3>
+            <h4><a id="user-content-helm-chart-size-and-paramater-creep" class="anchor" href="#helm-chart-size-and-paramater-creep" aria-hidden="true"></a>Helm chart size and paramater creep</h4>
 <ul>
 <li>Bitnami Redis chart (+200 paramaters, +3000 loc)</li>
 <li>NATs offical chart (+100 paramaters, +1000 loc)</li>
@@ -602,8 +605,9 @@
             <!-- .slide: class="main" -->
 <h4><a id="user-content-quick-glance---kustomize" class="anchor" href="#quick-glance---kustomize" aria-hidden="true"></a>Quick glance - Kustomize</h4>
 <ul>
-<li>Overlay instead of parameterization</li>
-<li>DEMO: Simple overlay</li>
+<li>Template free customization</li>
+<li>Overlaying</li>
+<li>Transformation</li>
 </ul>
 
             </section>
@@ -626,10 +630,12 @@
             
             <h4><a id="user-content-kustomize-pros" class="anchor" href="#kustomize-pros" aria-hidden="true"></a>Kustomize Pros</h4>
 <ul>
-<li>Simple, no need to learn new stuff</li>
-<li>Utility functions</li>
+<li>Simple, easy to learn</li>
+<li>We can customize any resource field</li>
+<li>Doesn’t hide k8s apis</li>
+<li>Many utility functions that deal with real-world cases</li>
 <li>Understand YAML semantics</li>
-<li>Built-in with kubectl (-k)</li>
+<li>Built-in with kubectl (apply -k)</li>
 </ul>
 
             </section>
@@ -642,7 +648,9 @@
             
             <h4><a id="user-content-kustomize-cons" class="anchor" href="#kustomize-cons" aria-hidden="true"></a>Kustomize Cons</h4>
 <ul>
-<li>Limited</li>
+<li>Less suited for creating abstraction</li>
+<li>Limited code-reuse</li>
+<li>No story for packaging or external dependencies</li>
 </ul>
 
             </section>
@@ -657,8 +665,18 @@
 <ul>
 <li>With helm post-rendering</li>
 <li>We can used Helm charts + Kustomize overlays</li>
-<li>🤯 🤯 🤯</li>
 </ul>
+
+            </section>
+    
+
+
+
+    
+        <section class="main">
+            
+            <!-- .slide: class="main" -->
+<h1><a id="user-content--1" class="anchor" href="#-1" aria-hidden="true"></a><img src="http://www.reactiongifs.com/r/2013/10/tim-and-eric-mind-blown.gif" alt="🤯 🤯 🤯 " style="width:600px;border:none"></h1>
 
             </section>
     
@@ -692,9 +710,10 @@
             
             <h4><a id="user-content-composition" class="anchor" href="#composition" aria-hidden="true"></a>Composition</h4>
 <ul>
-<li>Abstraction - ability to create high level pieces</li>
-<li>Code reuse - ability to reuse definitions or functions in different places</li>
-<li>Parametrization - ability to reuse definitions with different paramaters</li>
+<li>Declarative</li>
+<li>Parametrization</li>
+<li>Abstraction</li>
+<li>Overlays</li>
 </ul>
 
             </section>
@@ -707,8 +726,8 @@
             
             <h4><a id="user-content-correctness" class="anchor" href="#correctness" aria-hidden="true"></a>Correctness</h4>
 <ul>
-<li>Type safety</li>
-<li>Testability</li>
+<li>Type safety - Easy to identify, understand and validate resource types</li>
+<li>Testability - Easy to create tests that validate configuration</li>
 </ul>
 
             </section>
@@ -749,6 +768,10 @@
         <section >
             
             <h4><a id="user-content-security" class="anchor" href="#security" aria-hidden="true"></a>Security</h4>
+<ul>
+<li>Runtime</li>
+<li>Code Analysis</li>
+</ul>
 
             </section>
     
@@ -792,6 +815,10 @@
     background-color:#85c23d;
 }
 
+.feature-table th:last-child, .feature-table td:last-child:not([colspan]){
+    display: none
+}
+
 
 .feature-table td[colspan] {
     background-color:black;
@@ -806,6 +833,7 @@
 <th></th>
 <th>Helm</th>
 <th>Kustomize</th>
+<th></th>
 </tr>
 </thead>
 <tbody>
@@ -813,23 +841,27 @@
 <td colspan="3">Composition</td>
 </tr>
 <tr>
-<td>Code-Reuse</td>
-<td class="r2"></td>
-<td></td>
-</tr>
-<tr>
 <td>Abstraction</td>
 <td class="r1"></td>
+<td class="r0"></td>
 <td></td>
 </tr>
 <tr>
 <td>Parametrization</td>
 <td class="r2"></td>
+<td class="r1"></td>
 <td></td>
 </tr>
 <tr>
 <td>Overlays</td>
 <td class="r0"></td>
+<td class="r3"></td>
+<td></td>
+</tr>
+<tr>
+<td>Declarative</td>
+<td class="r2"></td>
+<td class="r3"></td>
 <td></td>
 </tr>
 <tr>
@@ -838,10 +870,12 @@
 <tr>
 <td>Type-Safety</td>
 <td class="r1"></td>
+<td class="r2"></td>
 <td></td>
 </tr>
 <tr>
 <td>Testability</td>
+<td class="r2"></td>
 <td class="r2"></td>
 <td></td>
 </tr>
@@ -851,11 +885,13 @@
 <tr>
 <td>External imports</td>
 <td class="r2"></td>
+<td class="r0"></td>
 <td></td>
 </tr>
 <tr>
 <td>Package management</td>
 <td class="r3"></td>
+<td class="r0"></td>
 <td></td>
 </tr>
 <tr>
@@ -864,28 +900,33 @@
 <tr>
 <td>Familiar PL</td>
 <td class="r2"></td>
+<td class="r3"></td>
 <td></td>
 </tr>
 <tr>
 <td>IDE support</td>
 <td class="r2"></td>
+<td class="r2"></td>
 <td></td>
 </tr>
 <tr>
-<td>No Boilerplate</td>
+<td>Minimal Boilerplate</td>
 <td class="r1"></td>
+<td class="r2"></td>
 <td></td>
 </tr>
 <tr>
 <td colspan="3">Security</td>
 </tr>
 <tr>
-<td>Sandbox</td>
-<td class="r0"></td>
+<td>Runtime</td>
+<td class="r3"></td>
+<td class="r3"></td>
 <td></td>
 </tr>
 <tr>
-<td>Static-Analysis</td>
+<td>Code Analysis</td>
+<td class="r2"></td>
 <td class="r2"></td>
 <td></td>
 </tr>
@@ -898,9 +939,21 @@
 
 
     
+        <section class="main">
+            
+            <!-- .slide: class="main" -->
+<h3><a id="user-content-questions" class="anchor" href="#questions" aria-hidden="true"></a>Questions?</h3>
+
+            </section>
+    
+
+
+
+    
         <section >
             
-            <h3><a id="user-content-lets-take-a-look-of-deno" class="anchor" href="#lets-take-a-look-of-deno" aria-hidden="true"></a>Let’s take a look of Deno</h3>
+            <h3><a id="user-content-lets-take-a-look-at-deno" class="anchor" href="#lets-take-a-look-at-deno" aria-hidden="true"></a>Let’s take a look at <strong>Deno</strong></h3>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Deno.svg/1200px-Deno.svg.png" alt="Deno" style="width:400px;border:none;box-shadow:none;vertical-align:middle;margin-top:5px"></p>
 
             </section>
     
@@ -926,7 +979,7 @@
             <h3><a id="user-content-typescript" class="anchor" href="#typescript" aria-hidden="true"></a>Typescript</h3>
 <ul>
 <li>Superset of javascript</li>
-<li>Extremly powerful type-system</li>
+<li>Extremely powerful type-system</li>
 </ul>
 
             </section>
@@ -954,9 +1007,9 @@
         <section data-visibility="hidden">
             
             <!-- .slide: data-visibility="hidden" -->
-<h3><a id="user-content-lets-create-high-level-abstraction" class="anchor" href="#lets-create-high-level-abstraction" aria-hidden="true"></a>Let’s create high level abstraction</h3>
+<h3><a id="user-content-lets-use-high-level-abstraction" class="anchor" href="#lets-use-high-level-abstraction" aria-hidden="true"></a>Let’s use high level abstraction</h3>
 <ul>
-<li>Application</li>
+<li>Microservice</li>
 </ul>
 
             </section>
@@ -969,9 +1022,6 @@
             
             <!-- .slide: data-visibility="hidden" -->
 <h3><a id="user-content-lets-create-a-test" class="anchor" href="#lets-create-a-test" aria-hidden="true"></a>Let’s create a test</h3>
-<ul>
-<li></li>
-</ul>
 
             </section>
     
@@ -1025,7 +1075,17 @@
     
         <section >
             
-            <h3><a id="user-content-not-all-is-perfect" class="anchor" href="#not-all-is-perfect" aria-hidden="true"></a>Not all is perfect</h3>
+            <h3><a id="user-content-questions-1" class="anchor" href="#questions-1" aria-hidden="true"></a>Questions</h3>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4><a id="user-content-not-perfect-yet" class="anchor" href="#not-perfect-yet" aria-hidden="true"></a>Not perfect (Yet…)</h4>
 <ul>
 <li>Need to use some code-generation for getting k8s types</li>
 <li>K8S OpenAPI defintions are not always reliable for validation</li>
@@ -1041,31 +1101,7 @@
     
         <section >
             
-            <h3><a id="user-content-questions" class="anchor" href="#questions" aria-hidden="true"></a>Questions</h3>
-
-            </section>
-    
-
-
-
-    
-        <section >
-            
-            <h3><a id="user-content-great-success" class="anchor" href="#great-success" aria-hidden="true"></a>Great success</h3>
-<style>
-.feature-table td {
-    border: 1px solid black
-}
-
-.feature-table td h2 {
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.feature-table td h3 {
-    font-size: 14px;
-}
-</style>
+            <p><img src="https://lh3.googleusercontent.com/proxy/ME6nGscux80CLl9lHV8XZkIsCC1gA9KLs8Wa7yA8fAeTY5LvP419tQIkge1BHyQpGMf58JxAUyj41zpiV5NEJqM" alt="Great Success" style="height:160px;border:none;margin:0;box-shadow:none;margin-top:-70px"></p>
 <table class="feature-table">
 <thead>
 <tr>
@@ -1073,6 +1109,7 @@
 <th>Helm</th>
 <th>Kustomize</th>
 <th>Deno</th>
+<th></th>
 </tr>
 </thead>
 <tbody>
@@ -1081,26 +1118,30 @@
 </tr>
 <tr>
 <td>Code-Reuse</td>
-<td></td>
-<td></td>
+<td class="r2"></td>
+<td class="r2"></td>
+<td class="r3"></td>
 <td></td>
 </tr>
 <tr>
 <td>Abstraction</td>
-<td></td>
-<td></td>
+<td class="r1"></td>
+<td class="r0"></td>
+<td class="r3"></td>
 <td></td>
 </tr>
 <tr>
 <td>Parametrization</td>
-<td></td>
-<td></td>
+<td class="r2"></td>
+<td class="r1"></td>
+<td class="r3"></td>
 <td></td>
 </tr>
 <tr>
 <td>Overlays</td>
-<td></td>
-<td></td>
+<td class="r0"></td>
+<td class="r3"></td>
+<td class="r3"></td>
 <td></td>
 </tr>
 <tr>
@@ -1108,29 +1149,34 @@
 </tr>
 <tr>
 <td>Type-Safety</td>
-<td></td>
-<td></td>
+<td class="r1"></td>
+<td class="r2"></td>
+<td class="r3"></td>
 <td></td>
 </tr>
 <tr>
 <td>Testability</td>
-<td></td>
-<td></td>
+<td class="r2"></td>
+<td class="r2"></td>
+<td class="r3"></td>
 <td></td>
 </tr>
 <tr>
-<td colspan="4">Code Sharing</td>
+<td>Code Sharing</td>
+<td colspan="4"></td>
 </tr>
 <tr>
-<td>Exteranl imports</td>
-<td></td>
-<td></td>
+<td>External imports</td>
+<td class="r2"></td>
+<td class="r0"></td>
+<td class="r3"></td>
 <td></td>
 </tr>
 <tr>
 <td>Package management</td>
-<td></td>
-<td></td>
+<td class="r3"></td>
+<td class="r0"></td>
+<td class="r2"></td>
 <td></td>
 </tr>
 <tr>
@@ -1138,20 +1184,23 @@
 </tr>
 <tr>
 <td>Familiar PL</td>
-<td></td>
-<td></td>
+<td class="r2"></td>
+<td class="r3"></td>
+<td class="r3"></td>
 <td></td>
 </tr>
 <tr>
 <td>IDE support</td>
-<td></td>
-<td></td>
+<td class="r2"></td>
+<td class="r2"></td>
+<td class="r3"></td>
 <td></td>
 </tr>
 <tr>
-<td>No Boilerplate</td>
-<td></td>
-<td></td>
+<td>Minimal Boilerplate</td>
+<td class="r1"></td>
+<td class="r2"></td>
+<td class="r3"></td>
 <td></td>
 </tr>
 <tr>
@@ -1159,14 +1208,16 @@
 </tr>
 <tr>
 <td>Runtime</td>
-<td></td>
-<td></td>
+<td class="r3"></td>
+<td class="r3"></td>
+<td class="r2"></td>
 <td></td>
 </tr>
 <tr>
-<td>Sandbox</td>
-<td></td>
-<td></td>
+<td>Code Analysis</td>
+<td class="r2"></td>
+<td class="r2"></td>
+<td class="r3"></td>
 <td></td>
 </tr>
 </tbody>
@@ -1277,10 +1328,11 @@
 
 
     
-        <section >
+        <section class="main">
             
-            <h4><a id="user-content-your-k8s-deployment" class="anchor" href="#your-k8s-deployment" aria-hidden="true"></a>Your k8s deployment</h4>
-<h4><a id="user-content-can-and-should-be-a-lot-simpler" class="anchor" href="#can-and-should-be-a-lot-simpler" aria-hidden="true"></a>Can and should be a lot simpler</h4>
+            <!-- .slide: class="main" -->
+<h3><a id="user-content-your-kubernetes-deployments" class="anchor" href="#your-kubernetes-deployments" aria-hidden="true"></a>Your Kubernetes deployments</h3>
+<h3><a id="user-content-can-and-should-be-a-lot-simpler" class="anchor" href="#can-and-should-be-a-lot-simpler" aria-hidden="true"></a>can and <strong>should</strong> be a lot <strong>simpler</strong></h3>
 
             </section>
     
@@ -1288,20 +1340,37 @@
 
 
     
-        <section >
+        <section class="main">
             
-            <p>Thanks!</p>
-
+            <!-- .slide: class="main" -->
+<h1><a id="user-content-thank-you" class="anchor" href="#thank-you" aria-hidden="true"></a>Thank You!</h1>
+<div style="font-size:28px; width: 300px; margin: 80px auto">
+<p><img src="https://github.com/yshayy.png?size=70" alt="Yshay Yaacobi" style="float:left;margin-top:3px;border-radius:35px;border:none"></p>
+<p>Yshay Yaacobi<br>
+@yshayy</p>
+</div>
+<div style="text-align:center">
+<p style="font-size:20px">Slides and examples at <a href="https://git.io/J49q9">https://git.io/J49q9</a> </p>
+</div>
             </section>
     
 
 
 
     
-        <section >
+        <section class="main">
             
-            <p>Questions?</p>
-
+            <!-- .slide: class="main" -->
+<h2><a id="user-content-questions-2" class="anchor" href="#questions-2" aria-hidden="true"></a>Questions?</h2>
+<div style="font-size:28px; width: 300px; margin: 80px auto">
+<p><img src="https://github.com/yshayy.png?size=70" alt="Yshay Yaacobi" style="float:left;margin-top:3px;border-radius:35px;border:none"></p>
+<p>Yshay Yaacobi<br>
+<a href="mailto:yshay@livecycle.io">yshay@livecycle.io</a>
+@yshayy</p>
+</div>
+<div style="text-align:center">
+<p style="font-size:20px">Slides and examples at <a href="https://git.io/J49q9">https://git.io/J49q9</a> </p>
+</div>
             </section>
     
 

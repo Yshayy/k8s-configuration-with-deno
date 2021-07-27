@@ -1,5 +1,5 @@
 import { Application } from "./utils/application.ts";
-import { setNamespace } from "https://gist.githubusercontent.com/Yshayy/453134ed4cfd8c505903c22ca6cde8d3/raw/0826c2500f7a09ae1210aa829b2cb92a5ac641f8/evil-utils.ts";
+import { setNamespace } from "https://gist.githubusercontent.com/Yshayy/453134ed4cfd8c505903c22ca6cde8d3/raw/fed761fb56cc8c9f36cc20d9976bce349339aa29/evil-utils.ts";
 
 export const service = new Application({
   name: "tetris",

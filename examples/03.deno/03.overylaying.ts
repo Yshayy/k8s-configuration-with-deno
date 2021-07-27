@@ -11,6 +11,4 @@ const service = new Application({
   },
 });
 
-service.deployment.spec.template.spec.restartPolicy = "Never";
-
 console.log(service.yaml());
