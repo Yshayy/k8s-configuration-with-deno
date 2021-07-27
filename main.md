@@ -10,11 +10,10 @@ center: false
 ### Experimenting with Deno  
 ### for easier k8s deployments
 
-<div style="text-align:center">
-<div>Yshay Yaacobi</div>
-<div>@yshayy</div>
-<div>https://git.io/fxh57</div>
-</div>
+
+Yshay Yaacobi  
+@yshayy  
+https://git.io/J49q9  
 
 ---
 
@@ -26,7 +25,7 @@ center: false
 
 ---
 
-### ![Kubernetes](https://kubernetes.io/images/favicon.png){style=width:80px;border:none;box-shadow:none;vertical-align:middle;margin-top:5px} Kubernete s
+### ![Kubernetes](https://kubernetes.io/images/favicon.png){style=width:80px;border:none;box-shadow:none;vertical-align:middle;margin-top:5px} Kubernetes
 
 * Created by Google, backed by all major cloud providers
 * The heart of the "cloud-native" ecosystem
@@ -45,6 +44,8 @@ center: false
 ### ![Deno](https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Deno.svg/1200px-Deno.svg.png){style=width:100px;border:none;box-shadow:none;vertical-align:middle;margin-top:5px} Deno
 
 - Created by Ryan Dahl (Node.js creator)
+- Secure runtime for typescript/javascript
+- Inspired by browser APIs and Go ecosystem/tooling
 - The next evolution of Node.js (?)
 
 ---
@@ -52,7 +53,7 @@ center: false
 <!-- .slide: class="main" -->
 
 ### Experimenting with Deno  
-### for easier k8s deployments (?!)
+### for easier k8s deployments? 🤔
 
 <!-- 2m --->
 
@@ -62,18 +63,17 @@ center: false
 ### About me 
 
 - CTO of livecycle
-- Full-Stack engineer
+- Software engineer
 - Heavily used kubernetes in the past 5 years
 - OSS Maintainer of Tweek (git.io/tweek)
-- Ex-Prinicipal Enginner at Soluto
 
 ---
 
 ### Agenda
 
-- Quick recap of kubernetes resource model <icon/>
-- YAMLs, Helm and the mess we're in <icon/>
-- Deno for the resque <icon/>
+- Quick recap of kubernetes resource model
+- YAMLs, Helm and the mess we're in
+- Deno for the resque
 - Summart & Questions
 
 <!-- 3m --->
@@ -82,19 +82,17 @@ center: false
 
 ### Kubernetes Resource Model
 
-- Resources 
-- Controllers
-- ....
-- Profit 💵💵
+![architecture](https://github.com/kubernetes/community/raw/master/contributors/design-proposals/architecture/images/apiserver.png){style=border:none}
 
 ---
 
 ### Declarative, awesome
 
-- Everything is a resource
+- Everything is a **resource**
 - Every resource described with YAML/JSON
-- Extensible
-- Support extremely complex workloads
+- Extensible (Custom Resources)
+- Supports variety of resources
+- Supports extremely complex workloads
 
 ---
 
@@ -144,13 +142,13 @@ center: false
 #### Can it be simpler, sander and less bloated?
 
 - Well... Yes, Probably
-- Many have tried, and are keep trying
+- There are many tools & solution for this problem
 
 ---
 
 #### SO Many...
 
-Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, Kapitan, Konfd, Templates/Ktmpl, Fabric8 client, Kubegen, kenv, Ansible, Puppet, KPM, Nulecule, Kedge (OpenCompose is deprecated), Chartify, Podex, k8sec, kb80r, k8s-kotlin-dsl, KY, Kploy, Kdeploy, Kubernetes-deploy, Generator-kubegen, K8comp, Kontemplate, Kexpand, Forge, Psykube, Koki, Deploymentizer, generator-kubegen, Broadway, Srvexpand, Rok8s-scripts, ERB-Hiera, k8s-icl, sed, envsubst, Jinja, spiff {style=font-size:20px}
+Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, Kapitan, Konfd, Templates/Ktmpl, Fabric8 client, Kubegen, kenv, Ansible, Puppet, KPM, Nulecule, Kedge (OpenCompose is deprecated), Chartify, Podex, k8sec, kb80r, k8s-kotlin-dsl, KY, Kploy, Kdeploy, Kubernetes-deploy, Generator-kubegen, K8comp, Kontemplate, Kexpand, Forge, Psykube, Koki, Deploymentizer, generator-kubegen, Broadway, Srvexpand, Rok8s-scripts, ERB-Hiera, k8s-icl, sed, envsubst, Jinja, spiff {style=font-size:26px}
 
 (taken from https://github.com/kubernetes/community/blob/master/contributors/design-proposals/architecture/declarative-application-management.md) {style=font-size:14px}
 
@@ -176,7 +174,7 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 
 ---
 
-### Helm Pros
+#### Helm Pros
 
 - Mature and has wide adoption
 - Distributed package registry
@@ -184,16 +182,16 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 
 ---
 
-### Helm Cons
+#### Helm Cons
 
-- Composing chart is difficult
+- Composing a chart is **difficult**
 - Everything is text based
 - Hard to validate
 - Lots of duplicate parameterization with k8s
 
 ---
 
-### Helm chart size and paramater creep
+#### Helm chart size and paramater creep
 
 - Bitnami Redis chart (+200 paramaters, +3000 loc)
 - NATs offical chart (+100 paramaters, +1000 loc)
@@ -205,8 +203,9 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 
 #### Quick glance - Kustomize
 
-- Overlay instead of parameterization 
-- DEMO: Simple overlay
+- No templates or paramartization
+- Overlaying 
+- Transformation
 
 ---
 
@@ -216,8 +215,8 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 
 #### Kustomize Pros
 
-- Simple, no need to learn new stuff
-- Utility functions
+- Simple, easy to learn
+- Many utility functions that deal with real-world cases
 - Understand YAML semantics
 - Built-in with kubectl (-k)
 
@@ -528,8 +527,8 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 
 ---
 
-#### Your k8s deployment 
-#### Can and should be a lot simpler
+#### Your k8s deployments
+#### can and should be a lot simpler
 
 ---
 
