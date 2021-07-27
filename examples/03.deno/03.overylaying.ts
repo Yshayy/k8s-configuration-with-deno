@@ -1,17 +1,16 @@
-import { Microservice } from "./utils/microservice.ts";
+import { Application } from "./utils/application.ts";
 
-
-const service = new Microservice({
+const service = new Application({
   name: "tetris",
   image: "bsord/tetris",
   service: {
     port: 8080,
     expose: {
-      hostname: "tetris.localtest.me"
-    }
-  }
-})
+      hostname: "tetris.localtest.me",
+    },
+  },
+});
 
-service.deployment.spec.template.spec.restartPolicy = "Never"
+service.deployment.spec.template.spec.restartPolicy = "Never";
 
-console.log(service.yaml())
+console.log(service.yaml());

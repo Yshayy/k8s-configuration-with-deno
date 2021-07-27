@@ -11,7 +11,7 @@ createMicroservice().with(
   addService({ port: 80 }),
   expose({ domain: "tetris.localtest.met" }),
   modify((x) => {
-    x.ingress.spec.ingressClassName = "Traefik"
+    x.ingress.spec.ingressClassName = "Traefik";
   }),
 ).dump(
   { name: "tetris", namespace: "default", labels: { app: "tetris" } },

@@ -162,7 +162,6 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 
 ---
 
-
 ### ![Helm](https://helm.sh/img/helm.svg){style=width:100px;border:none;box-shadow:none;vertical-align:middle;margin-top:5px}
 
 - Parameterized
@@ -177,7 +176,7 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 #### Helm Pros
 
 - Mature and has wide adoption
-- Distributed package registry
+- Distributed package registries with thousands of charts
 - CLI for managing deployment-livecycle
 
 ---
@@ -203,7 +202,7 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 
 #### Quick glance - Kustomize
 
-- No templates or paramartization
+- Template free customization
 - Overlaying 
 - Transformation
 
@@ -216,15 +215,19 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 #### Kustomize Pros
 
 - Simple, easy to learn
+- We can customize any resource field
+- Doesn't hide k8s apis
 - Many utility functions that deal with real-world cases
 - Understand YAML semantics
-- Built-in with kubectl (-k)
+- Built-in with kubectl (apply -k)
 
 ---
 
 #### Kustomize Cons
 
-- Limited
+- Less suited for creating abstraction
+- Limited code-reuse
+- No story for packaging or external dependencies
 
 ---
 
@@ -232,7 +235,12 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 
 - With helm post-rendering
 - We can used Helm charts + Kustomize overlays
-- 🤯 🤯 🤯 
+
+---
+
+<!-- .slide: class="main" -->
+
+# ![🤯 🤯 🤯 ](http://www.reactiongifs.com/r/2013/10/tim-and-eric-mind-blown.gif){style=width:600px;border:none}
 
 ---
 
@@ -250,9 +258,9 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 
 #### Composition
 
-- Abstraction - ability to create high level pieces
 - Code reuse - ability to reuse definitions or functions in different places
-- Parametrization - ability to reuse definitions with different paramaters
+- Parametrization - ability to reuse definitions with different Parameters
+- Abstraction - ability to create high level pieces
 
 ---
 
@@ -316,6 +324,10 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
     background-color:#85c23d;
 }
 
+.feature-table th:nth-child(4), .feature-table td:nth-child(4){
+    display: none
+}
+
 
 .feature-table td[colspan] {
     background-color:black;
@@ -325,31 +337,39 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 }
 </style>
 
-|                      	| Helm  	|  Kustomize 	|  
-|----------------------	|-------	|-----------	|
-| Composition                                     |||   
-| Code-Reuse            | {.r2}  	|           	|   
-| Abstraction           | {.r1}  	|           	|   
-| Parametrization       | {.r2}  	|           	|   
-| Overlays              | {.r0}     |               |
-| Correctness                                     |||   
-| Type-Safety           | {.r1}     |           	|   
-| Testability           | {.r2}     |           	|   
-| Code Sharing                                    |||   
-| External imports     	| {.r2}     |               |   
-| Package management    | {.r3}     |           	|   
-| Developer friendly                              |||   
-| Familiar PL        	| {.r2}     |           	|   
-| IDE support          	| {.r2}     |           	|   
-| No Boilerplate        | {.r1}     |           	|   
-| Security                                        |||   
-| Sandbox              	| {.r0}     |           	|   
-| Static-Analysis       | {.r2}     |               |
+|                      	| Helm  	|  Kustomize 	|   | 
+|----------------------	|-------	|-----------	|-- |
+| Composition                                         |||   
+| Code-Reuse            | {.r2}  	|  {.r2}        |   |   
+| Abstraction           | {.r1}  	|  {.r0}       	|   |   
+| Parametrization       | {.r2}  	|  {.r1}       	|   |   
+| Overlays              | {.r0}     |  {.r3}        |   |
+| Correctness                                         |||   
+| Type-Safety           | {.r1}     |  {.r2}       	|   |   
+| Testability           | {.r2}     |  {.r2}        |   |   
+| Code Sharing                                        |||   
+| External imports     	| {.r2}     |  {.r0}        |   |     
+| Package management    | {.r3}     |  {.r0}        |   |   
+| Developer friendly                                  |||   
+| Familiar PL        	| {.r2}     |   {.r3}       |   |   
+| IDE support          	| {.r2}     |   {.r2}      	|   |  
+| Minimal Boilerplate   | {.r1}     |   {.r2}      	|   |   
+| Security                                            |||   
+| Runtime              	| {.r3}     |  {.r3}        |   |  
+| Static Analysis       | {.r2}     |  {.r2}        |   |
 {.feature-table}
 
 ---
 
-### Let's take a look of Deno
+<!-- .slide: class="main" -->
+
+### Questions?
+
+---
+
+### Let's take a look at **Deno**
+
+![Deno](https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Deno.svg/1200px-Deno.svg.png){style=width:400px;border:none;box-shadow:none;vertical-align:middle;margin-top:5px} 
 
 ---
 
@@ -362,7 +382,7 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 ### Typescript
 
 - Superset of javascript
-- Extremly powerful type-system
+- Extremely powerful type-system
 
 ---
 
@@ -378,9 +398,9 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 
 <!-- .slide: data-visibility="hidden" -->
 
-### Let's create high level abstraction
+### Let's use high level abstraction
 
-- Application
+- Microservice
 
 ---
 
@@ -388,7 +408,6 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 
 ### Let's create a test
 
-- 
 
 ---
 

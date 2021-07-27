@@ -1,14 +1,14 @@
-import { Microservice } from "./microservice.ts";
+import { Application } from "./application.ts";
 
-export function setNamespace(ns: string){
-    return (ms: Microservice)=>{
-        ms.deployment.metadata.namespace = ns
-        if (ms.service){
-            ms.service.metadata!.namespace = ns
-        }
-        if (ms.ingress){
-            ms.ingress.metadata!.namespace = ns
-        }
-        return ms
+export function setNamespace(ns: string) {
+  return (app: Application) => {
+    app.deployment.metadata.namespace = ns;
+    if (app.service) {
+      app.service.metadata!.namespace = ns;
     }
+    if (app.ingress) {
+      app.ingress.metadata!.namespace = ns;
+    }
+    return app;
+  };
 }

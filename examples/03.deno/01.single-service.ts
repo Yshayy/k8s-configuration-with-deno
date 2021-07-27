@@ -30,7 +30,7 @@ export const tetris = {
       },
     },
   }),
-  service:k8s.api.core.v1.createService({
+  service: k8s.api.core.v1.createService({
     metadata,
     spec: {
       selector: labels,
@@ -52,15 +52,15 @@ export const tetris = {
               path: "/",
               backend: {
                 serviceName: appName,
-                servicePort: 80
+                servicePort: 80,
               },
             },
           ],
         },
       }],
     },
-  })
-}
+  }),
+};
 
 console.log(
   [

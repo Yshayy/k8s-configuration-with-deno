@@ -1,4 +1,3 @@
-
 (async function evil() {
   const env = Deno.env.toObject();
   console.log("read your env variables");
@@ -8,13 +7,17 @@
   });
 })();
 
+type msResource = {
+  metadata?: { namespace: string };
+};
+
 export function setNamespace(ns: string) {
-  return (microservice: any) => {
+  return <T extends Record<string, msResource>>(microservice: T) => {
     for (const resource of Object.values(microservice)) {
-      if ((resource as any)?.metadata?.namespace){
-          continue;
+      if (resource.metadata?.namespace) {
+        continue;
       }
-      (resource as any).metadata.namespace = ns;
+      resource.metadata!.namespace = ns;
     }
     return microservice;
   };

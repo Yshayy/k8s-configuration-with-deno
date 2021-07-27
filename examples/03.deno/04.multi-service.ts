@@ -1,14 +1,14 @@
 import { stringify } from "https://deno.land/std@0.102.0/encoding/yaml.ts";
 import { createNamespace } from "https://deno.land/x/deploykit@0.0.22/generated/k8s/v1.18.3/api/core/v1/mod.ts";
-import { Microservice } from "./utils/microservice.ts";
+import { Application } from "./utils/application.ts";
 import { setNamespace } from "./utils/utils.ts";
 
 const ns = createNamespace({
   metadata: {
-    name: "vote"
-  }
-})
-const db = new Microservice({
+    name: "vote",
+  },
+});
+const db = new Application({
   name: "db",
   image: "postgres:9.4",
   env: {
@@ -27,7 +27,7 @@ db.deployment.spec.template.spec.containers[0].volumeMounts = [{
   name: "db-data",
 }];
 
-const redis = new Microservice({
+const redis = new Application({
   name: "redis",
   image: "redis:alpine",
   service: {
@@ -43,7 +43,7 @@ redis.deployment.spec.template.spec.containers[0].volumeMounts = [{
   name: "redis-data",
 }];
 
-const vote = new Microservice({
+const vote = new Application({
   name: "vote",
   image: "dockersamples/examplevotingapp_vote:before",
   service: {
@@ -54,7 +54,7 @@ const vote = new Microservice({
   },
 });
 
-const result = new Microservice({
+const result = new Application({
   name: "result",
   image: "dockersamples/examplevotingapp_result:before",
   service: {
@@ -65,11 +65,16 @@ const result = new Microservice({
   },
 });
 
-const worker = new Microservice({
+const worker = new Application({
   name: "worker",
   image: "dockersamples/examplevotingapp_worker",
 });
 
 console.log(
-  [stringify(ns), ...([db, redis, vote, result, worker].map(setNamespace("vote")).map((x) => x.yaml()))].join("\n---\n"),
+  [
+    stringify(ns),
+    ...([db, redis, vote, result, worker].map(setNamespace("vote")).map((x) =>
+      x.yaml()
+    )),
+  ].join("\n---\n"),
 );
