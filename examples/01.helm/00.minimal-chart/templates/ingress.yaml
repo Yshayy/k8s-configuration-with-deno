@@ -6,7 +6,7 @@ metadata:
     {{- include "tetris.labels" . | nindent 4 }}
 spec:
   rules:
-    - host: {{ .Values.host | quote }}
+    - host: {{ .Values.hostname | quote }}
       http:
         paths:
           - path: "/"

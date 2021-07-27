@@ -50,7 +50,6 @@ spec:
             port: 
               number: 80
 
-
 #### TODO:
 #### Add HPA for pod auto-scaling
 #### Add PVC for storage (score?)
