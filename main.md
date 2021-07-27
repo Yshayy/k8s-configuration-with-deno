@@ -12,6 +12,7 @@ center: false
 
 
 Yshay Yaacobi  
+yshay@livecycle.io
 @yshayy  
 https://git.io/J49q9  
 
@@ -59,7 +60,15 @@ https://git.io/J49q9
 
 ---
 
-![Yshay Yaacobi](https://github.com/yshayy.png?size=150){style=float:right;margin-right:40px;border-radius:75px;border:none}
+<div style="float:right;font-size:18px;margin-right:40px">
+
+![Yshay Yaacobi](https://github.com/yshayy.png?size=150){style=border-radius:75px;border:none}
+
+yshay@livecycle.io  
+@yshayy
+
+</div>
+
 ### About me 
 
 - CTO of livecycle
@@ -258,16 +267,17 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 
 #### Composition
 
-- Code reuse - ability to reuse definitions or functions in different places
-- Parametrization - ability to reuse definitions with different Parameters
-- Abstraction - ability to create high level pieces
+- Declarative
+- Parametrization
+- Abstraction
+- Overlays 
 
 ---
 
 #### Correctness
 
-- Type safety 
-- Testability   
+- Type safety - Easy to identify, understand and validate resource types 
+- Testability - Easy to create tests that validate configuration
 
 ---
 
@@ -287,6 +297,9 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 ---
 
 #### Security
+
+- Runtime
+- Code Analysis
 
 ---
 
@@ -324,7 +337,7 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
     background-color:#85c23d;
 }
 
-.feature-table th:nth-child(4), .feature-table td:nth-child(4){
+.feature-table th:last-child, .feature-table td:last-child:not([colspan]){
     display: none
 }
 
@@ -340,10 +353,10 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 |                      	| Helm  	|  Kustomize 	|   | 
 |----------------------	|-------	|-----------	|-- |
 | Composition                                         |||   
-| Code-Reuse            | {.r2}  	|  {.r2}        |   |   
 | Abstraction           | {.r1}  	|  {.r0}       	|   |   
 | Parametrization       | {.r2}  	|  {.r1}       	|   |   
 | Overlays              | {.r0}     |  {.r3}        |   |
+| Declarative           | {.r2}     |  {.r3}        |   |
 | Correctness                                         |||   
 | Type-Safety           | {.r1}     |  {.r2}       	|   |   
 | Testability           | {.r2}     |  {.r2}        |   |   
@@ -356,7 +369,7 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 | Minimal Boilerplate   | {.r1}     |   {.r2}      	|   |   
 | Security                                            |||   
 | Runtime              	| {.r3}     |  {.r3}        |   |  
-| Static Analysis       | {.r2}     |  {.r2}        |   |
+| Code Analysis         | {.r2}     |  {.r2}        |   |
 {.feature-table}
 
 ---
@@ -449,46 +462,29 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 
 ---
 
-### Great success
+![Great Success](https://lh3.googleusercontent.com/proxy/ME6nGscux80CLl9lHV8XZkIsCC1gA9KLs8Wa7yA8fAeTY5LvP419tQIkge1BHyQpGMf58JxAUyj41zpiV5NEJqM){style=height:160px;border:none;margin:0;box-shadow:none;margin-top:-70px}
 
-
-<style>
-.feature-table td {
-    border: 1px solid black
-}
-
-.feature-table td h2 {
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.feature-table td h3 {
-    font-size: 14px;
-}
-</style>
-
-|                      	| Helm  	|  Kustomize 	|   Deno 
-|----------------------	|-------	|-----------    |-------    |  
-| Composition                                                ||||   
-| Code-Reuse            |   	    |               |        	|   
-| Abstraction           |   	    |               |        	|   
-| Parametrization       |   	    |               |        	|   
-| Overlays              |           |               |           |
-| Correctness                                                ||||   
-| Type-Safety           |   	    |               |        	|   
-| Testability           |   	    |               |        	|   
-| Code Sharing                                               ||||   
-| Exteranl imports     	|           |               |           |   
-| Package management    |   	    |               |        	|   
-| Developer friendly                                         ||||   
-| Familiar PL        	|   	    |               |        	|   
-| IDE support          	|   	    |               |        	|   
-| No Boilerplate        |   	    |               |        	|   
-| Security                                                   ||||   
-| Runtime              	|   	    |               |        	|   
-| Sandbox              	|   	    |               |        	|   
-{.feature-table}
-
+|                      	| Helm  	|  Kustomize 	|  Deno   |   | 
+|----------------------	|-------	|-----------	|-----    |-- |
+| Composition                                                  ||||   
+| Code-Reuse            | {.r2}  	|  {.r2}        |  {.r3}  |   |   
+| Abstraction           | {.r1}  	|  {.r0}       	|  {.r3}  |   |   
+| Parametrization       | {.r2}  	|  {.r1}       	|  {.r3}  |   |   
+| Overlays              | {.r0}     |  {.r3}        |  {.r3}  |   |
+| Correctness                                                  ||||   
+| Type-Safety           | {.r1}     |  {.r2}       	|  {.r3}  |   |   
+| Testability           | {.r2}     |  {.r2}        |  {.r3}  |   |   
+| Code Sharing                                      |          ||||   
+| External imports     	| {.r2}     |  {.r0}        |  {.r3}  |   |     
+| Package management    | {.r3}     |  {.r0}        |  {.r2}  |   |   
+| Developer friendly                                           ||||   
+| Familiar PL        	| {.r2}     |   {.r3}       |  {.r3}  |   |   
+| IDE support          	| {.r2}     |   {.r2}      	|  {.r3}  |   |  
+| Minimal Boilerplate   | {.r1}     |   {.r2}      	|  {.r3}  |   |   
+| Security                                                     ||||   
+| Runtime              	| {.r3}     |  {.r3}        |  {.r2}  |   |  
+| Code Analysis         | {.r2}     |  {.r2}        |  {.r3}  |   |
+{.feature-table .c4}
 
 ---
 
@@ -546,13 +542,52 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 
 ---
 
-#### Your k8s deployments
-#### can and should be a lot simpler
+<!-- .slide: class="main" -->
+
+### Your Kubernetes deployments
+### can and **should** be a lot **simpler**
 
 ---
 
-Thanks!
+<!-- .slide: class="main" -->
+
+# Thank You!
+
+
+<div style="font-size:28px; width: 300px; margin: 80px auto">
+
+![Yshay Yaacobi](https://github.com/yshayy.png?size=70){style=float:left;margin-top:3px;border-radius:35px;border:none}
+
+Yshay Yaacobi  
+@yshayy  
+
+</div>
+
+<div style="text-align:center">
+
+Slides and examples at https://git.io/J49q9  {style=font-size:20px}
+
+</div>
+
 
 ---
 
-Questions?
+<!-- .slide: class="main" -->
+
+## Questions?
+
+<div style="font-size:28px; width: 300px; margin: 80px auto">
+
+![Yshay Yaacobi](https://github.com/yshayy.png?size=70){style=float:left;margin-top:3px;border-radius:35px;border:none}
+
+Yshay Yaacobi  
+yshay@livecycle.io
+@yshayy  
+
+</div>
+
+<div style="text-align:center">
+
+Slides and examples at https://git.io/J49q9  {style=font-size:20px}
+
+</div>
