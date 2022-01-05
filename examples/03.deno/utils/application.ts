@@ -1,6 +1,6 @@
 import { stringify } from "https://deno.land/std@0.102.0/encoding/yaml.ts";
-import { Deployment } from "https://deno.land/x/deploykit@0.0.22/generated/k8s/v1.18.3/api/apps/v1/mod.ts";
-import * as k8s from "https://deno.land/x/deploykit@0.0.22/generated/k8s/v1.18.3/api/mod.ts";
+import { Deployment } from "https://deno.land/x/deploykit@0.0.24/generated/k8s/v1.22.5/api/apps/v1/mod.ts";
+import * as k8s from "https://deno.land/x/deploykit@0.0.24/generated/k8s/v1.22.5/api/mod.ts";
 
 type ApplicationOptions = {
   name: string;
@@ -22,7 +22,7 @@ type ApplicationOptions = {
  */
 export class Application {
   #options: ApplicationOptions;
-  ingress?: k8s.networking.v1beta1.Ingress;
+  ingress?: k8s.networking.v1.Ingress;
   service?: k8s.core.v1.Service;
   deployment: Deployment & {
     metadata: { name: string; labels: { app: string } };
@@ -100,7 +100,7 @@ export class Application {
         },
       });
       if (options.service.expose) {
-        this.ingress = k8s.networking.v1beta1.createIngress({
+        this.ingress = k8s.networking.v1.createIngress({
           metadata: this.#getMetaData(),
           spec: {
             rules: [{
@@ -110,8 +110,12 @@ export class Application {
                   pathType: "Prefix",
                   path: "/",
                   backend: {
-                    serviceName: this.service.metadata!.name,
-                    servicePort: this.service.spec!.ports![0].port,
+                    service: {
+                      name: this.service.metadata!.name!,
+                      port: {
+                        number: this.service.spec!.ports![0].port
+                      }
+                    }
                   },
                 }],
               },

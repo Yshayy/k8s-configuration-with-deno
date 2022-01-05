@@ -1,4 +1,4 @@
-import * as k8s from "https://deno.land/x/deploykit@0.0.22/generated/k8s/v1.18.3/mod.ts";
+import * as k8s from "https://deno.land/x/deploykit@0.0.24/generated/k8s/v1.22.5/mod.ts";
 import { stringify } from "https://deno.land/std@0.102.0/encoding/yaml.ts";
 
 const pod = k8s.api.core.v1.createPod({

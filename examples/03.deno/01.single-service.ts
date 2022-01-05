@@ -1,4 +1,4 @@
-import * as k8s from "https://deno.land/x/deploykit@0.0.22/generated/k8s/v1.18.3/mod.ts";
+import * as k8s from "https://deno.land/x/deploykit@0.0.24/generated/k8s/v1.22.5/mod.ts";
 import { stringify } from "https://deno.land/std@0.102.0/encoding/yaml.ts";
 const appName = "tetris";
 const image = "ociotec/tetris";
@@ -40,7 +40,7 @@ export const tetris = {
       }],
     },
   }),
-  ingress: k8s.api.networking.v1beta1.createIngress({
+  ingress: k8s.api.networking.v1.createIngress({
     metadata,
     spec: {
       rules: [{
@@ -51,8 +51,12 @@ export const tetris = {
               pathType: "Prefix",
               path: "/",
               backend: {
-                serviceName: appName,
-                servicePort: 80,
+                service: {
+                  name: appName,
+                  port: {
+                    number: 80
+                  }
+                }
               },
             },
           ],

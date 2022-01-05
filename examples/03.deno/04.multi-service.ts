@@ -1,5 +1,5 @@
 import { stringify } from "https://deno.land/std@0.102.0/encoding/yaml.ts";
-import { createNamespace } from "https://deno.land/x/deploykit@0.0.22/generated/k8s/v1.18.3/api/core/v1/mod.ts";
+import { createNamespace } from "https://deno.land/x/deploykit@0.0.24/generated/k8s/v1.22.5/api/core/v1/mod.ts";
 import { Application } from "./utils/application.ts";
 import { setNamespace } from "./utils/utils.ts";
 
@@ -18,10 +18,12 @@ const db = new Application({
     port: 5432,
   },
 });
+
 db.deployment.spec.template.spec.volumes = [{
   emptyDir: {},
   name: "db-data",
 }];
+
 db.deployment.spec.template.spec.containers[0].volumeMounts = [{
   mountPath: "/var/lib/postgresql/data",
   name: "db-data",
@@ -34,6 +36,7 @@ const redis = new Application({
     port: 6379,
   },
 });
+
 redis.deployment.spec.template.spec.volumes = [{
   emptyDir: {},
   name: "redis-data",

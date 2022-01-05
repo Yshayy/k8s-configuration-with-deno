@@ -1,5 +1,5 @@
-#!/usr/bin/env -S deno run --unstable --allow-run --allow-read --allow-net --allow-env https://deno.land/x/dzx@0.2.3/dzx.ts
-/// <reference path="https://deno.land/x/dzx@0.2.3/types.d.ts" />
+#!/usr/bin/env -S deno run --unstable --allow-run --allow-read --allow-net --allow-env https://deno.land/x/dzx@0.3.0/dzx.ts
+/// <reference path="https://deno.land/x/dzx@0.3.0/types.d.ts" />
 
 $.verbose = true;
 $.shell = "/usr/bin/zsh";

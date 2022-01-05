@@ -71,7 +71,7 @@ yshay@livecycle.io
 
 ### About me 
 
-- CTO of Livecycle
+- CTO of Livecycle (https://livecycle.io)
 - Software engineer
 - Heavily used kubernetes in the past 5 years
 - OSS Maintainer of Tweek (git.io/tweek)
@@ -91,12 +91,13 @@ yshay@livecycle.io
 
 ### Kubernetes Resource Model
 
-![architecture](https://github.com/kubernetes/community/raw/master/contributors/design-proposals/architecture/images/apiserver.png){style=border:none}
+![architecture](https://raw.githubusercontent.com/kubernetes/design-proposals-archive/main/architecture/images/apiserver.png){style=border:none}
 
 ---
 
 ### Declarative, awesome
 
+- Infrastructure as data
 - Everything is a **resource**
 - Every resource described with YAML/JSON
 - Extensible (Custom Resources)
@@ -464,7 +465,7 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 
 ---
 
-![Great Success](https://lh3.googleusercontent.com/proxy/ME6nGscux80CLl9lHV8XZkIsCC1gA9KLs8Wa7yA8fAeTY5LvP419tQIkge1BHyQpGMf58JxAUyj41zpiV5NEJqM){style=height:160px;border:none;margin:0;box-shadow:none;margin-top:-70px}
+![Meme Great Success - Borat T Shirt Clipart@pikpng.com](./images/great.png){style=height:160px;border:none;margin:0;box-shadow:none;margin-top:-30px}
 
 |                      	| Helm  	|  Kustomize 	|  Deno   |   | 
 |----------------------	|-------	|-----------	|-----    |-- |
@@ -522,6 +523,7 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 ### Deploykit
 
 - Deno-based small experimental library
+- Toolkit, not a framework
 - Type generation based on k8s openapi and several CRDs
 - Basic building blocking for composition and code-reusing
 - Open source

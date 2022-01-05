@@ -1,8 +1,9 @@
 {
     "deno.suggest.imports.hosts": {
-        "https://cdn.skypack.dev": false,
-        "https://deno.land": false
+        "https://cdn.skypack.dev": true,
+        "https://deno.land": true
     },
+    /*
     "workbench.colorTheme": "GitHub Clean White",
     "workbench.colorCustomizations": {
       "editorCursor.background": "#ffffff",
@@ -10,6 +11,7 @@
       "editor.lineHighlightBackground": "#f0f0f0",
       "editor.selectionBackground": "#aaeeff"
     },
+    */
     "workbench.statusBar.visible": true,
     // "workbench.activityBar.visible": true,
     "editor.minimap.enabled": false,

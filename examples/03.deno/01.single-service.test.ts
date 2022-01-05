@@ -13,9 +13,9 @@ Deno.test("Tetris Service should expose container port 80 on hostname tetris.loc
     x.path === "/" && x.pathType === "Prefix"
   );
   assertExists(rootPath);
-  assertEquals(rootPath.backend.serviceName, tetris.service.metadata.name);
+  assertEquals(rootPath.backend.service?.name, tetris.service.metadata.name);
   const servicePort = tetris.service.spec.ports.find((x) =>
-    x.port === rootPath.backend.servicePort
+    x.port === rootPath.backend.service?.port?.number
   );
   assertExists(servicePort, "missing service port");
   assertEquals(servicePort.targetPort, 80);
