@@ -113,9 +113,9 @@ export class Application {
                     service: {
                       name: this.service.metadata!.name!,
                       port: {
-                        number: this.service.spec!.ports![0].port
-                      }
-                    }
+                        number: this.service.spec!.ports![0].port,
+                      },
+                    },
                   },
                 }],
               },

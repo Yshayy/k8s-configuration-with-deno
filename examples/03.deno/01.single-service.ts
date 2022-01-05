@@ -54,9 +54,9 @@ export const tetris = {
                 service: {
                   name: appName,
                   port: {
-                    number: 80
-                  }
-                }
+                    number: 80,
+                  },
+                },
               },
             },
           ],
