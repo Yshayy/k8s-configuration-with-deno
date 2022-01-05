@@ -149,7 +149,7 @@ yshay@livecycle.io
 
 ---
 
-#### Can it be simpler, sander and less bloated?
+#### Can it be simpler, saner and less bloated?
 
 - Well... Yes, Probably
 - There are many tools & solution for this problem
@@ -164,7 +164,7 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 
 ---
 
-<!-- 8.5m --->
+<!-- 5m --->
 
 <!-- .slide: class="main" -->
 
@@ -209,8 +209,6 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 - Most paramaters overlap with k8s yamls 
 
 ---
-
-<!-- .slide: class="main" -->
 
 #### Quick glance - Kustomize
 
@@ -381,6 +379,8 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 
 ### Questions?
 
+<!-- 10m --->
+
 ---
 
 ### Let's take a look at **Deno**
@@ -526,6 +526,7 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 - Toolkit, not a framework
 - Type generation based on k8s openapi and several CRDs
 - Basic building blocking for composition and code-reusing
+- Can easily be integrated with other tools (tilt/argo/etc...)
 - Open source
 - https://git.io/J4XIT
 
@@ -538,6 +539,9 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 - Deployment Manager for Google
 
 ---
+
+<!-- .slide: data-visibility="hidden" -->
+
 
 ### What's the future holds
 

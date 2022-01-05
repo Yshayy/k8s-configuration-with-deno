@@ -11,4 +11,14 @@ export const service = new Application({
   },
 });
 
+// We can still use overlaying!
+/*
+service.deployment.spec.replicas = 3;
+service.ingress!.spec!.tls = [{
+  secretName: "some secret"
+}]
+service.ingress!.spec!.rules![0].host = "tetris2.localtest.me"
+service.deployment.metadata.labels["some-label"] = "wwww"
+*/
+
 console.log(service.yaml());

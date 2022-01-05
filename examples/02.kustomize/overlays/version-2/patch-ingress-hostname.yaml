@@ -5,3 +5,12 @@ metadata:
 spec:
   rules:
   - host: tetris2.localtest.me
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: tetris2
+            port: 
+              number: 80

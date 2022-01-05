@@ -3,10 +3,10 @@ import { stringify } from "https://deno.land/std@0.102.0/encoding/yaml.ts";
 const appName = "tetris";
 const image = "ociotec/tetris";
 const labels = {
-  app: "tetris",
+  app: appName,
 };
 const metadata = {
-  name: "tetris",
+  name: appName,
   labels,
 };
 
@@ -19,7 +19,7 @@ export const tetris = {
       },
       template: {
         metadata: {
-          labels: labels,
+          labels,
         },
         spec: {
           containers: [{
