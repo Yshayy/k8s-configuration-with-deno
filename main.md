@@ -7,6 +7,13 @@ center: false
 
 <link rel="stylesheet" type="text/css" href="./livecycle.css" />
 
+<script>
+  const el = document.createElement("div")
+  el.textContent = "@yshayy"
+  el.className = "author"
+  document.body.appendChild(el)
+</script>
+
 ### Experimenting with Deno  
 ### for easier k8s deployments
 
@@ -18,45 +25,146 @@ https://git.io/J49q9
 
 ---
 
-### ![Kubernetes](https://kubernetes.io/images/favicon.png){style=width:80px;border:none;box-shadow:none;vertical-align:middle;margin-top:5px} Kubernetes
+<!-- .slide: class="main" -->
 
-> "Open-source container-orchestration system for automating computer application deployment, scaling, and management." {style=text-align:left}
+### Let's talk a bit about YAMLs
 
-*Source: Wikipedia{style=font-size:16px;text-align:right;margin-right:160px;font-weight:bold}
+<div position="relative">
 
----
+<div class="fragment fade-in"
+ style="transform: rotateZ(5deg) scale(0.8)">
 
-### ![Kubernetes](https://kubernetes.io/images/favicon.png){style=width:80px;border:none;box-shadow:none;vertical-align:middle;margin-top:5px} Kubernetes
+```yaml
+name: AWS-CD
 
-* Created by Google, backed by all major cloud providers
-* The heart of the "cloud-native" ecosystem
-* Most popular way to run container workloads at scale
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v1
+        - name: Install Node packages
+          run: npm install
+        - name: Build the project
+          run: npm run build
+        - name: Deploy to S3
+          run: AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }} aws s3 sync dist s3://${{ secrets.S3_BUCKET_NAME }}/
+```
 
----
+</div>
 
-### ![Deno](https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Deno.svg/1200px-Deno.svg.png){style=width:100px;border:none;box-shadow:none;vertical-align:middle;margin-top:5px} Deno
+<div class="fragment fade-in"
+ style="position:absolute; top: 80px; left:150px;transform: rotateZ(-5deg) scale(1.1)">
 
-> "Deno is a runtime for JavaScript and TypeScript that is based on the V8 JavaScript engine and the Rust programming language." {style=text-align:left}
+```yaml
+version: '3.3'
+services:
+   db:
+     image: mysql:5.7
+     volumes:
+       - db_data:/var/lib/mysql
+     restart: always
+     environment:
+       MYSQL_ROOT_PASSWORD: somewordpress
+       MYSQL_DATABASE: wordpress
+       MYSQL_USER: wordpress
+       MYSQL_PASSWORD: wordpress
+   wordpress:
+     depends_on:
+       - db
+     image: wordpress:latest
+     ports:
+       - "8000:80"
+     restart: always
+     environment:
+       WORDPRESS_DB_HOST: db:3306
+       WORDPRESS_DB_USER: wordpress
+       WORDPRESS_DB_PASSWORD: wordpress
+       WORDPRESS_DB_NAME: wordpress
+volumes:
+    db_data: {}
+```
 
-*Source: Wikipedia{style=font-size:16px;text-align:right;margin-right:160px;font-weight:bold}
+</div>
 
----
+<div class="fragment fade-in"
+ style="position:absolute; top: 140px; left:-60px;transform: rotateZ(-2deg) scale(0.7)">
 
-### ![Deno](https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Deno.svg/1200px-Deno.svg.png){style=width:100px;border:none;box-shadow:none;vertical-align:middle;margin-top:5px} Deno
+```yaml
+AWSTemplateFormatVersion: '2010-09-09'
+Metadata:
+  License: Apache-2.0
+Description: 'AWS CloudFormation Sample Template EC2InstanceWithSecurityGroupSample:
+  Create an Amazon EC2 instance running the Amazon Linux AMI.'
+Parameters:
+  KeyName:
+    Description: Name of an existing EC2 KeyPair to enable SSH access to the instance
+    Type: AWS::EC2::KeyPair::KeyName
+    ConstraintDescription: must be the name of an existing EC2 KeyPair.
+  InstanceType:
+    Description: WebServer EC2 instance type
+    Type: String
+    Default: t3.small
+    AllowedValues: [t2.nano, t2.micro, t2.small, t2.medium, t2.large, t2.xlarge, t2.2xlarge,
+      d2.xlarge, d2.2xlarge, d2.4xlarge, d2.8xlarge]
+    ConstraintDescription: must be a valid EC2 instance type.
+Resources:
+  EC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: !Ref 'InstanceType'
+      SecurityGroups: [!Ref 'InstanceSecurityGroup']
+      KeyName: !Ref 'KeyName'
+      ImageId: !Ref 'LatestAmiId'
+  InstanceSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Enable SSH access via port 22
+      SecurityGroupIngress:
+      - IpProtocol: tcp
+        FromPort: 22
+        ToPort: 22
+        CidrIp: !Ref 'SSHLocation'
+Outputs:
+  InstanceId:
+    Description: InstanceId of the newly created EC2 instance
+    Value: !Ref 'EC2Instance'
+  AZ:
+    Description: Availability Zone of the newly created EC2 instance
+    Value: !GetAtt [EC2Instance, AvailabilityZone]
+  PublicDNS:
+    Description: Public DNSName of the newly created EC2 instance
+    Value: !GetAtt [EC2Instance, PublicDnsName]
+  PublicIP:
+    Description: Public IP address of the newly created EC2 instance
+    Value: !GetAtt [EC2Instance, PublicIp]
+```
 
-- Created by Ryan Dahl (Node.js creator)
-- Secure runtime for typescript/javascript
-- Inspired by browser APIs and the Go ecosystem/tooling
-- The next evolution of Node.js (?)
+</div>
+
+</div>
+
 
 ---
 
 <!-- .slide: class="main" -->
 
-### Experimenting with Deno  
-### for easier k8s deployments? 🤔
+<div style="font-size: 0.8em" >
 
-<!-- 2m --->
+### At first it was terrible...
+### Yet, I got used to that 😎 {.fragment .fade-in}
+### But then, there's kubernetes YAMLs 😱😱😱 {.fragment .fade-in} 
+
+</div>
+
+---
+
+<!-- .slide: class="main" -->
+
+### How can we make writing YAMLs easier with Deno and TS
 
 ---
 
@@ -69,19 +177,34 @@ yshay@livecycle.io
 
 </div>
 
+<!-- .slide: class="main" -->
+
 ### About me 
+
+<div style="font-size: 0.8em">
 
 - CTO of Livecycle (https://livecycle.io)
 - Software engineer
 - Heavily used kubernetes in the past 5 years
 - OSS Maintainer of Tweek (git.io/tweek)
 
+</div>
+
+---
+
+
+### About Livecycle 
+
+- Next generation collaboration tools for development teams
+- Continuous playground environments 
+- Bridging the gap between coders & non-coders
+- Currently in public beta, check it out on https://livecycle.io
+
 ---
 
 ### Agenda
 
-- Quick recap of kubernetes resource model
-- YAMLs, Helm and the mess we're in
+- Looking at k8s yamls
 - Deployment configuration in Deno
 - Summary
 
@@ -128,20 +251,6 @@ yshay@livecycle.io
 
 ---
 
-<!-- .slide: data-visibility="hidden" -->
-
-#### And then, there are Custom Resources
-
-- Monitor
-- Function
-- Snapshot
-- Canary
-- ...
-
-<!-- 7m --->
-
----
-
 <!-- .slide: class="main" -->
 
 #### A single kubernetes service definition can be **huge**.
@@ -162,224 +271,31 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 
 (taken from https://github.com/kubernetes/community/blob/master/contributors/design-proposals/architecture/declarative-application-management.md) {style=font-size:14px}
 
----
-
-<!-- 5m --->
-
-<!-- .slide: class="main" -->
-
-### Let's take a look at the popular ones
-
----
-
-### ![Helm](https://helm.sh/img/helm.svg){style=width:100px;border:none;box-shadow:none;vertical-align:middle;margin-top:5px}
-
-- Parameterized
-- Template based
-- Distributed Chart registries
-
----
-
-### ![Helm](https://helm.sh/img/helm.svg){style=width:100px;border:none;box-shadow:none;vertical-align:middle;margin-top:5px} Demo
-
----
-
-#### Helm Pros
-
-- Mature and has wide adoption
-- Thousands of public charts available
-- CLI for managing deployment lifecycle
-- Charts for anything
-
----
-
-#### Helm Cons
-
-- Composing a chart is **difficult**
-- Everything is text based
-- Hard to validate
-- Lots of duplicate parameterization with k8s
-
----
-
-#### Helm chart size and paramater creep
-
-- Bitnami Redis chart (+200 paramaters, +3000 loc)
-- NATs offical chart (+100 paramaters, +1000 loc)
-- Most paramaters overlap with k8s yamls 
-
----
-
-#### Quick glance - Kustomize
-
-- Template free customization
-- Overlaying 
-- Transformation
-
----
-
-#### Kustomize - demo
-
----
-
-#### Kustomize Pros
-
-- Simple, easy to learn
-- We can customize any resource field
-- Doesn't hide k8s apis
-- Many utility functions that deal with real-world cases
-- Understand YAML semantics
-- Built-in with kubectl (apply -k)
-
----
-
-#### Kustomize Cons
-
-- Less suited for creating abstraction
-- Limited code-reuse
-- No story for packaging or external dependencies
-
----
-
-#### Helm + Kustomize toghter
-
-- With helm post-rendering
-- We can used Helm charts + Kustomize overlays
 
 ---
 
 <!-- .slide: class="main" -->
 
-# ![🤯 🤯 🤯 ](http://www.reactiongifs.com/r/2013/10/tim-and-eric-mind-blown.gif){style=width:600px;border:none}
+![standards](https://imgs.xkcd.com/comics/standards_2x.png)
+
+### Let's try something else with Deno!
 
 ---
 
-<!-- .slide: class="main" -->
+### ![Deno](https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Deno.svg/1200px-Deno.svg.png){style=width:100px;border:none;box-shadow:none;vertical-align:middle;margin-top:5px} Deno
 
-### Let's take a step back
+> "Deno is a runtime for JavaScript and TypeScript that is based on the V8 JavaScript engine and the Rust programming language." {style=text-align:left}
 
----
-
-<!-- .slide: class="main" -->
-
-### What's important?
+*Source: Wikipedia{style=font-size:16px;text-align:right;margin-right:160px;font-weight:bold}
 
 ---
 
-#### Composition
+### ![Deno](https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Deno.svg/1200px-Deno.svg.png){style=width:100px;border:none;box-shadow:none;vertical-align:middle;margin-top:5px} Deno
 
-- Declarative
-- Parametrization
-- Abstraction
-- Overlays 
-
----
-
-#### Correctness
-
-- Type safety - Easy to identify, understand and validate resource types 
-- Testability - Easy to create tests that validate configuration
-
----
-
-#### Code Sharing
-
-- External imports
-- Package management
-
----
-
-#### Developer friendly
-
-- Familiar Programming language 
-- IDE Support
-- Minimal boilerplate
-
----
-
-#### Security
-
-- Runtime
-- Code Analysis
-
----
-
-<style>
-.feature-table, td {
-    border: 1px solid black
-}
-
-.feature-table {
-    border-bottom: 1px solid black
-}
-
-.feature-table th {
-    font-size: 22px;
-    border: 1px solid black;
-}
-
-.feature-table td {
-    font-size: 16px;   
-}
-
-.feature-table td.r0{
-    background-color:#475248;
-}
-
-.feature-table td.r1{
-    background-color:#BF3C3A;
-}
-
-.feature-table td.r2{
-    background-color:#FBD431;
-}
-
-.feature-table td.r3{
-    background-color:#85c23d;
-}
-
-.feature-table th:last-child, .feature-table td:last-child:not([colspan]){
-    display: none
-}
-
-
-.feature-table td[colspan] {
-    background-color:black;
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
-}
-</style>
-
-|                      	| Helm  	|  Kustomize 	|   | 
-|----------------------	|-------	|-----------	|-- |
-| Composition                                         |||   
-| Abstraction           | {.r1}  	|  {.r0}       	|   |   
-| Parametrization       | {.r2}  	|  {.r1}       	|   |   
-| Overlays              | {.r0}     |  {.r3}        |   |
-| Declarative           | {.r2}     |  {.r3}        |   |
-| Correctness                                         |||   
-| Type-Safety           | {.r1}     |  {.r2}       	|   |   
-| Testability           | {.r2}     |  {.r2}        |   |   
-| Code Sharing                                        |||   
-| External imports     	| {.r2}     |  {.r0}        |   |     
-| Package management    | {.r3}     |  {.r0}        |   |   
-| Developer friendly                                  |||   
-| Familiar PL        	| {.r2}     |   {.r3}       |   |   
-| IDE support          	| {.r2}     |   {.r2}      	|   |  
-| Minimal Boilerplate   | {.r1}     |   {.r2}      	|   |   
-| Security                                            |||   
-| Runtime              	| {.r3}     |  {.r3}        |   |  
-| Code Analysis         | {.r2}     |  {.r2}        |   |
-{.feature-table}
-
----
-
-<!-- .slide: class="main" -->
-
-### Questions?
-
-<!-- 10m --->
+- Created by Ryan Dahl (Node.js creator)
+- Secure runtime for typescript/javascript
+- Inspired by browser APIs and the Go ecosystem/tooling
+- The next evolution of Node.js (?)
 
 ---
 
@@ -452,16 +368,62 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 
 ---
 
-### Questions
-
----
-
-#### Not perfect (Yet...)
+#### Not perfect
 
 - Need to use some code-generation for getting k8s types
 - K8S OpenAPI defintions are not always reliable for validation
 - Typescript type-system is not sound
-- Missing standard and utility libaries for this case
+- Need utility libaries for advanced case
+
+---
+
+<!-- .slide: class="main" -->
+
+### Let's take a step back
+
+---
+
+<!-- .slide: class="main" -->
+
+### What's important?
+
+---
+
+#### Composition
+
+- Declarative
+- Parametrization
+- Abstraction
+- Overlays 
+
+---
+
+#### Correctness
+
+- Type safety - Easy to identify, understand and validate resource types 
+- Testability - Easy to create tests that validate configuration
+
+---
+
+#### Code Sharing
+
+- External imports
+- Package management
+
+---
+
+#### Developer friendly
+
+- Familiar Programming language 
+- IDE Support
+- Minimal boilerplate
+
+---
+
+#### Security
+
+- Runtime
+- Code Analysis
 
 ---
 
@@ -495,10 +457,11 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 
 ---
 
+
 <!-- .slide: class="main" -->
 
 
-#### There are many benefits of using a **real** programming language for configuration
+#### There are many benefits of using a **general-purpose** programming language for configuration
 
 ---
 
@@ -532,16 +495,13 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 
 ---
 
-### Not necessarily only for k8s
+<!-- .slide: class="main" -->
 
-- CloudFormation for AWS
-- ARM for Azure
-- Deployment Manager for Google
+### Not necessarily only for k8s
 
 ---
 
 <!-- .slide: data-visibility="hidden" -->
-
 
 ### What's the future holds
 
@@ -552,7 +512,7 @@ Helm, OC new-app, Kompose, Spread, Draft, Ksonnet/Kubecfg, Databricks Jsonnet, K
 
 <!-- .slide: class="main" -->
 
-### Your Kubernetes deployments
+### Your configuration files
 ### can and **should** be a lot **simpler**
 
 ---

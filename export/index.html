@@ -14,8 +14,8 @@
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link rel="stylesheet" href="./libs/reveal.js/4.1.3/reset.css">
-	<link rel="stylesheet" href="./libs/reveal.js/4.1.3/reveal.css">
+	<link rel="stylesheet" href="libs/reveal.js/4.1.3/reset.css">
+	<link rel="stylesheet" href="libs/reveal.js/4.1.3/reveal.css">
 
 	
 	
@@ -23,23 +23,23 @@
 
 	  <!-- highlight Theme -->
   	
-	  <link rel="stylesheet" href="./libs/highlight.js/11.3.1/styles/monokai.min.css">
+	  <link rel="stylesheet" href="libs/highlight.js/11.3.1/styles/monokai.min.css">
 	
 	
 		
-	<link rel="stylesheet" href="./libs/reveal.js/4.1.3/plugin/chalkboard/style.css">
+	<link rel="stylesheet" href="libs/reveal.js/4.1.3/plugin/chalkboard/style.css">
 	
 	
 	
-		<link rel="stylesheet" href="./libs/reveal.js/4.1.3/plugin/customcontrols/style.css">
+		<link rel="stylesheet" href="libs/reveal.js/4.1.3/plugin/customcontrols/style.css">
 	
-	<link rel="stylesheet" href="./libs/styles/tasklist.css">
+	<link rel="stylesheet" href="libs/styles/tasklist.css">
 
 
 
   <!-- Revealjs Theme -->
   
-  	<link rel="stylesheet" href="./libs/reveal.js/4.1.3/theme/simple.css" id="theme">
+  	<link rel="stylesheet" href="libs/reveal.js/4.1.3/theme/simple.css" id="theme">
   
   
 
@@ -67,6 +67,12 @@
             
             <!-- .slide: class="main" -->
 <link rel="stylesheet" type="text/css" href="./livecycle.css" />
+<script>
+  const el = document.createElement("div")
+  el.textContent = "@yshayy"
+  el.className = "author"
+  document.body.appendChild(el)
+</script>
 <h3>Experimenting with Deno</h3>
 <h3>for easier k8s deployments</h3>
 <p>Yshay Yaacobi<br>
@@ -80,59 +86,114 @@
 
 
     
-        <section >
+        <section class="main">
             
-            <h3><img src="https://kubernetes.io/images/favicon.png" alt="Kubernetes" style="width:80px;border:none;box-shadow:none;vertical-align:middle;margin-top:5px"> Kubernetes</h3>
-<blockquote style="text-align:left">
-<p>“Open-source container-orchestration system for automating computer application deployment, scaling, and management.”</p>
-</blockquote>
-<p style="font-size:16px;text-align:right;margin-right:160px;font-weight:bold">*Source: Wikipedia</p>
+            <!-- .slide: class="main" -->
+<h3>Let’s talk a bit about YAMLs</h3>
+<div position="relative">
+<div class="fragment fade-in"
+ style="transform: rotateZ(5deg) scale(0.8)">
+<pre><code class="language-yaml">name: AWS-CD
 
-            </section>
-    
-
-
-
-    
-        <section >
-            
-            <h3><img src="https://kubernetes.io/images/favicon.png" alt="Kubernetes" style="width:80px;border:none;box-shadow:none;vertical-align:middle;margin-top:5px"> Kubernetes</h3>
-<ul>
-<li>Created by Google, backed by all major cloud providers</li>
-<li>The heart of the “cloud-native” ecosystem</li>
-<li>Most popular way to run container workloads at scale</li>
-</ul>
-
-            </section>
-    
-
-
-
-    
-        <section >
-            
-            <h3><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Deno.svg/1200px-Deno.svg.png" alt="Deno" style="width:100px;border:none;box-shadow:none;vertical-align:middle;margin-top:5px"> Deno</h3>
-<blockquote style="text-align:left">
-<p>“Deno is a runtime for JavaScript and TypeScript that is based on the V8 JavaScript engine and the Rust programming language.”</p>
-</blockquote>
-<p style="font-size:16px;text-align:right;margin-right:160px;font-weight:bold">*Source: Wikipedia</p>
-
-            </section>
-    
-
-
-
-    
-        <section >
-            
-            <h3><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Deno.svg/1200px-Deno.svg.png" alt="Deno" style="width:100px;border:none;box-shadow:none;vertical-align:middle;margin-top:5px"> Deno</h3>
-<ul>
-<li>Created by Ryan Dahl (Node.js creator)</li>
-<li>Secure runtime for typescript/javascript</li>
-<li>Inspired by browser APIs and the Go ecosystem/tooling</li>
-<li>The next evolution of Node.js (?)</li>
-</ul>
-
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v1
+        - name: Install Node packages
+          run: npm install
+        - name: Build the project
+          run: npm run build
+        - name: Deploy to S3
+          run: AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }} aws s3 sync dist s3://${{ secrets.S3_BUCKET_NAME }}/
+</code></pre>
+</div>
+<div class="fragment fade-in"
+ style="position:absolute; top: 80px; left:150px;transform: rotateZ(-5deg) scale(1.1)">
+<pre><code class="language-yaml">version: '3.3'
+services:
+   db:
+     image: mysql:5.7
+     volumes:
+       - db_data:/var/lib/mysql
+     restart: always
+     environment:
+       MYSQL_ROOT_PASSWORD: somewordpress
+       MYSQL_DATABASE: wordpress
+       MYSQL_USER: wordpress
+       MYSQL_PASSWORD: wordpress
+   wordpress:
+     depends_on:
+       - db
+     image: wordpress:latest
+     ports:
+       - &quot;8000:80&quot;
+     restart: always
+     environment:
+       WORDPRESS_DB_HOST: db:3306
+       WORDPRESS_DB_USER: wordpress
+       WORDPRESS_DB_PASSWORD: wordpress
+       WORDPRESS_DB_NAME: wordpress
+volumes:
+    db_data: {}
+</code></pre>
+</div>
+<div class="fragment fade-in"
+ style="position:absolute; top: 140px; left:-60px;transform: rotateZ(-2deg) scale(0.7)">
+<pre><code class="language-yaml">AWSTemplateFormatVersion: '2010-09-09'
+Metadata:
+  License: Apache-2.0
+Description: 'AWS CloudFormation Sample Template EC2InstanceWithSecurityGroupSample:
+  Create an Amazon EC2 instance running the Amazon Linux AMI.'
+Parameters:
+  KeyName:
+    Description: Name of an existing EC2 KeyPair to enable SSH access to the instance
+    Type: AWS::EC2::KeyPair::KeyName
+    ConstraintDescription: must be the name of an existing EC2 KeyPair.
+  InstanceType:
+    Description: WebServer EC2 instance type
+    Type: String
+    Default: t3.small
+    AllowedValues: [t2.nano, t2.micro, t2.small, t2.medium, t2.large, t2.xlarge, t2.2xlarge,
+      d2.xlarge, d2.2xlarge, d2.4xlarge, d2.8xlarge]
+    ConstraintDescription: must be a valid EC2 instance type.
+Resources:
+  EC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: !Ref 'InstanceType'
+      SecurityGroups: [!Ref 'InstanceSecurityGroup']
+      KeyName: !Ref 'KeyName'
+      ImageId: !Ref 'LatestAmiId'
+  InstanceSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Enable SSH access via port 22
+      SecurityGroupIngress:
+      - IpProtocol: tcp
+        FromPort: 22
+        ToPort: 22
+        CidrIp: !Ref 'SSHLocation'
+Outputs:
+  InstanceId:
+    Description: InstanceId of the newly created EC2 instance
+    Value: !Ref 'EC2Instance'
+  AZ:
+    Description: Availability Zone of the newly created EC2 instance
+    Value: !GetAtt [EC2Instance, AvailabilityZone]
+  PublicDNS:
+    Description: Public DNSName of the newly created EC2 instance
+    Value: !GetAtt [EC2Instance, PublicDnsName]
+  PublicIP:
+    Description: Public IP address of the newly created EC2 instance
+    Value: !GetAtt [EC2Instance, PublicIp]
+</code></pre>
+</div>
+</div>
             </section>
     
 
@@ -142,9 +203,22 @@
         <section class="main">
             
             <!-- .slide: class="main" -->
-<h3>Experimenting with Deno</h3>
-<h3>for easier k8s deployments? 🤔</h3>
-<!-- 2m --->
+<div style="font-size: 0.8em" >
+<h3>At first it was terrible…</h3>
+<h3 class="fragment fade-in">Yet, I got used to that 😎</h3>
+<h3 class="fragment fade-in">But then, there’s kubernetes YAMLs 😱😱😱</h3>
+</div>
+            </section>
+    
+
+
+
+    
+        <section class="main">
+            
+            <!-- .slide: class="main" -->
+<h3>How can we make writing YAMLs easier with Deno and TS</h3>
+
             </section>
     
 
@@ -159,11 +233,28 @@
 @yshayy</p>
 </div>
 <h3>About me</h3>
+<div style="font-size: 0.8em">
 <ul>
 <li>CTO of Livecycle (<a href="https://livecycle.io">https://livecycle.io</a>)</li>
 <li>Software engineer</li>
 <li>Heavily used kubernetes in the past 5 years</li>
 <li>OSS Maintainer of Tweek (<a href="http://git.io/tweek">git.io/tweek</a>)</li>
+</ul>
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3>About Livecycle</h3>
+<ul>
+<li>Next generation collaboration tools for development teams</li>
+<li>Continuous playground environments</li>
+<li>Bridging the gap between coders &amp; non-coders</li>
+<li>Currently in public beta, check it out on <a href="https://livecycle.io">https://livecycle.io</a></li>
 </ul>
 
             </section>
@@ -176,8 +267,7 @@
             
             <h3>Agenda</h3>
 <ul>
-<li>Quick recap of kubernetes resource model</li>
-<li>YAMLs, Helm and the mess we’re in</li>
+<li>Looking at k8s yamls</li>
 <li>Deployment configuration in Deno</li>
 <li>Summary</li>
 </ul>
@@ -251,24 +341,6 @@
 
 
     
-        <section data-visibility="hidden">
-            
-            <!-- .slide: data-visibility="hidden" -->
-<h4>And then, there are Custom Resources</h4>
-<ul>
-<li>Monitor</li>
-<li>Function</li>
-<li>Snapshot</li>
-<li>Canary</li>
-<li>…</li>
-</ul>
-<!-- 7m --->
-            </section>
-    
-
-
-
-    
         <section class="main">
             
             <!-- .slide: class="main" -->
@@ -283,7 +355,7 @@
     
         <section >
             
-            <h4>Can it be simpler, sander and less bloated?</h4>
+            <h4>Can it be simpler, saner and less bloated?</h4>
 <ul>
 <li>Well… Yes, Probably</li>
 <li>There are many tools &amp; solution for this problem</li>
@@ -307,11 +379,13 @@
 
 
     
-        <section class="main">
+        <section >
             
-            <!-- 8.5m --->
-<!-- .slide: class="main" -->
-<h3>Let’s take a look at the popular ones</h3>
+            <h3><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Deno.svg/1200px-Deno.svg.png" alt="Deno" style="width:100px;border:none;box-shadow:none;vertical-align:middle;margin-top:5px"> Deno</h3>
+<blockquote style="text-align:left">
+<p>“Deno is a runtime for JavaScript and TypeScript that is based on the V8 JavaScript engine and the Rust programming language.”</p>
+</blockquote>
+<p style="font-size:16px;text-align:right;margin-right:160px;font-weight:bold">*Source: Wikipedia</p>
 
             </section>
     
@@ -321,418 +395,13 @@
     
         <section >
             
-            <h3><img src="https://helm.sh/img/helm.svg" alt="Helm" style="width:100px;border:none;box-shadow:none;vertical-align:middle;margin-top:5px"></h3>
+            <h3><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Deno.svg/1200px-Deno.svg.png" alt="Deno" style="width:100px;border:none;box-shadow:none;vertical-align:middle;margin-top:5px"> Deno</h3>
 <ul>
-<li>Parameterized</li>
-<li>Template based</li>
-<li>Distributed Chart registries</li>
+<li>Created by Ryan Dahl (Node.js creator)</li>
+<li>Secure runtime for typescript/javascript</li>
+<li>Inspired by browser APIs and the Go ecosystem/tooling</li>
+<li>The next evolution of Node.js (?)</li>
 </ul>
-
-            </section>
-    
-
-
-
-    
-        <section >
-            
-            <h3><img src="https://helm.sh/img/helm.svg" alt="Helm" style="width:100px;border:none;box-shadow:none;vertical-align:middle;margin-top:5px"> Demo</h3>
-
-            </section>
-    
-
-
-
-    
-        <section >
-            
-            <h4>Helm Pros</h4>
-<ul>
-<li>Mature and has wide adoption</li>
-<li>Thousands of public charts available</li>
-<li>CLI for managing deployment lifecycle</li>
-<li>Charts for anything</li>
-</ul>
-
-            </section>
-    
-
-
-
-    
-        <section >
-            
-            <h4>Helm Cons</h4>
-<ul>
-<li>Composing a chart is <strong>difficult</strong></li>
-<li>Everything is text based</li>
-<li>Hard to validate</li>
-<li>Lots of duplicate parameterization with k8s</li>
-</ul>
-
-            </section>
-    
-
-
-
-    
-        <section >
-            
-            <h4>Helm chart size and paramater creep</h4>
-<ul>
-<li>Bitnami Redis chart (+200 paramaters, +3000 loc)</li>
-<li>NATs offical chart (+100 paramaters, +1000 loc)</li>
-<li>Most paramaters overlap with k8s yamls</li>
-</ul>
-
-            </section>
-    
-
-
-
-    
-        <section >
-            
-            <h4>Quick glance - Kustomize</h4>
-<ul>
-<li>Template free customization</li>
-<li>Overlaying</li>
-<li>Transformation</li>
-</ul>
-
-            </section>
-    
-
-
-
-    
-        <section >
-            
-            <h4>Kustomize - demo</h4>
-
-            </section>
-    
-
-
-
-    
-        <section >
-            
-            <h4>Kustomize Pros</h4>
-<ul>
-<li>Simple, easy to learn</li>
-<li>We can customize any resource field</li>
-<li>Doesn’t hide k8s apis</li>
-<li>Many utility functions that deal with real-world cases</li>
-<li>Understand YAML semantics</li>
-<li>Built-in with kubectl (apply -k)</li>
-</ul>
-
-            </section>
-    
-
-
-
-    
-        <section >
-            
-            <h4>Kustomize Cons</h4>
-<ul>
-<li>Less suited for creating abstraction</li>
-<li>Limited code-reuse</li>
-<li>No story for packaging or external dependencies</li>
-</ul>
-
-            </section>
-    
-
-
-
-    
-        <section >
-            
-            <h4>Helm + Kustomize toghter</h4>
-<ul>
-<li>With helm post-rendering</li>
-<li>We can used Helm charts + Kustomize overlays</li>
-</ul>
-
-            </section>
-    
-
-
-
-    
-        <section class="main">
-            
-            <!-- .slide: class="main" -->
-<h1><img src="http://www.reactiongifs.com/r/2013/10/tim-and-eric-mind-blown.gif" alt="🤯 🤯 🤯 " style="width:600px;border:none"></h1>
-
-            </section>
-    
-
-
-
-    
-        <section class="main">
-            
-            <!-- .slide: class="main" -->
-<h3>Let’s take a step back</h3>
-
-            </section>
-    
-
-
-
-    
-        <section class="main">
-            
-            <!-- .slide: class="main" -->
-<h3>What’s important?</h3>
-
-            </section>
-    
-
-
-
-    
-        <section >
-            
-            <h4>Composition</h4>
-<ul>
-<li>Declarative</li>
-<li>Parametrization</li>
-<li>Abstraction</li>
-<li>Overlays</li>
-</ul>
-
-            </section>
-    
-
-
-
-    
-        <section >
-            
-            <h4>Correctness</h4>
-<ul>
-<li>Type safety - Easy to identify, understand and validate resource types</li>
-<li>Testability - Easy to create tests that validate configuration</li>
-</ul>
-
-            </section>
-    
-
-
-
-    
-        <section >
-            
-            <h4>Code Sharing</h4>
-<ul>
-<li>External imports</li>
-<li>Package management</li>
-</ul>
-
-            </section>
-    
-
-
-
-    
-        <section >
-            
-            <h4>Developer friendly</h4>
-<ul>
-<li>Familiar Programming language</li>
-<li>IDE Support</li>
-<li>Minimal boilerplate</li>
-</ul>
-
-            </section>
-    
-
-
-
-    
-        <section >
-            
-            <h4>Security</h4>
-<ul>
-<li>Runtime</li>
-<li>Code Analysis</li>
-</ul>
-
-            </section>
-    
-
-
-
-    
-        <section >
-            
-            <style>
-.feature-table, td {
-    border: 1px solid black
-}
-
-.feature-table {
-    border-bottom: 1px solid black
-}
-
-.feature-table th {
-    font-size: 22px;
-    border: 1px solid black;
-}
-
-.feature-table td {
-    font-size: 16px;   
-}
-
-.feature-table td.r0{
-    background-color:#475248;
-}
-
-.feature-table td.r1{
-    background-color:#BF3C3A;
-}
-
-.feature-table td.r2{
-    background-color:#FBD431;
-}
-
-.feature-table td.r3{
-    background-color:#85c23d;
-}
-
-.feature-table th:last-child, .feature-table td:last-child:not([colspan]){
-    display: none
-}
-
-
-.feature-table td[colspan] {
-    background-color:black;
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
-}
-</style>
-<table class="feature-table">
-<thead>
-<tr>
-<th></th>
-<th>Helm</th>
-<th>Kustomize</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td colspan="3">Composition</td>
-</tr>
-<tr>
-<td>Abstraction</td>
-<td class="r1"></td>
-<td class="r0"></td>
-<td></td>
-</tr>
-<tr>
-<td>Parametrization</td>
-<td class="r2"></td>
-<td class="r1"></td>
-<td></td>
-</tr>
-<tr>
-<td>Overlays</td>
-<td class="r0"></td>
-<td class="r3"></td>
-<td></td>
-</tr>
-<tr>
-<td>Declarative</td>
-<td class="r2"></td>
-<td class="r3"></td>
-<td></td>
-</tr>
-<tr>
-<td colspan="3">Correctness</td>
-</tr>
-<tr>
-<td>Type-Safety</td>
-<td class="r1"></td>
-<td class="r2"></td>
-<td></td>
-</tr>
-<tr>
-<td>Testability</td>
-<td class="r2"></td>
-<td class="r2"></td>
-<td></td>
-</tr>
-<tr>
-<td colspan="3">Code Sharing</td>
-</tr>
-<tr>
-<td>External imports</td>
-<td class="r2"></td>
-<td class="r0"></td>
-<td></td>
-</tr>
-<tr>
-<td>Package management</td>
-<td class="r3"></td>
-<td class="r0"></td>
-<td></td>
-</tr>
-<tr>
-<td colspan="3">Developer friendly</td>
-</tr>
-<tr>
-<td>Familiar PL</td>
-<td class="r2"></td>
-<td class="r3"></td>
-<td></td>
-</tr>
-<tr>
-<td>IDE support</td>
-<td class="r2"></td>
-<td class="r2"></td>
-<td></td>
-</tr>
-<tr>
-<td>Minimal Boilerplate</td>
-<td class="r1"></td>
-<td class="r2"></td>
-<td></td>
-</tr>
-<tr>
-<td colspan="3">Security</td>
-</tr>
-<tr>
-<td>Runtime</td>
-<td class="r3"></td>
-<td class="r3"></td>
-<td></td>
-</tr>
-<tr>
-<td>Code Analysis</td>
-<td class="r2"></td>
-<td class="r2"></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-
-            </section>
-    
-
-
-
-    
-        <section class="main">
-            
-            <!-- .slide: class="main" -->
-<h3>Questions?</h3>
 
             </section>
     
@@ -865,7 +534,35 @@
     
         <section >
             
-            <h3>Questions</h3>
+            <h4>Not perfect</h4>
+<ul>
+<li>Need to use some code-generation for getting k8s types</li>
+<li>K8S OpenAPI defintions are not always reliable for validation</li>
+<li>Typescript type-system is not sound</li>
+<li>Need utility libaries for advanced case</li>
+</ul>
+
+            </section>
+    
+
+
+
+    
+        <section class="main">
+            
+            <!-- .slide: class="main" -->
+<h3>Let’s take a step back</h3>
+
+            </section>
+    
+
+
+
+    
+        <section class="main">
+            
+            <!-- .slide: class="main" -->
+<h3>What’s important?</h3>
 
             </section>
     
@@ -875,12 +572,69 @@
     
         <section >
             
-            <h4>Not perfect (Yet…)</h4>
+            <h4>Composition</h4>
 <ul>
-<li>Need to use some code-generation for getting k8s types</li>
-<li>K8S OpenAPI defintions are not always reliable for validation</li>
-<li>Typescript type-system is not sound</li>
-<li>Missing standard and utility libaries for this case</li>
+<li>Declarative</li>
+<li>Parametrization</li>
+<li>Abstraction</li>
+<li>Overlays</li>
+</ul>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>Correctness</h4>
+<ul>
+<li>Type safety - Easy to identify, understand and validate resource types</li>
+<li>Testability - Easy to create tests that validate configuration</li>
+</ul>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>Code Sharing</h4>
+<ul>
+<li>External imports</li>
+<li>Package management</li>
+</ul>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>Developer friendly</h4>
+<ul>
+<li>Familiar Programming language</li>
+<li>IDE Support</li>
+<li>Minimal boilerplate</li>
+</ul>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>Security</h4>
+<ul>
+<li>Runtime</li>
+<li>Code Analysis</li>
 </ul>
 
             </section>
@@ -1032,7 +786,7 @@
         <section class="main">
             
             <!-- .slide: class="main" -->
-<h4>There are many benefits of using a <strong>real</strong> programming language for configuration</h4>
+<h4>There are many benefits of using a <strong>general-purpose</strong> programming language for configuration</h4>
 
             </section>
     
@@ -1091,14 +845,10 @@
 
 
     
-        <section >
+        <section class="main">
             
-            <h3>Not necessarily only for k8s</h3>
-<ul>
-<li>CloudFormation for AWS</li>
-<li>ARM for Azure</li>
-<li>Deployment Manager for Google</li>
-</ul>
+            <!-- .slide: class="main" -->
+<h3>Not necessarily only for k8s</h3>
 
             </section>
     
@@ -1106,9 +856,10 @@
 
 
     
-        <section >
+        <section data-visibility="hidden">
             
-            <h3>What’s the future holds</h3>
+            <!-- .slide: data-visibility="hidden" -->
+<h3>What’s the future holds</h3>
 <ul>
 <li>Dhall</li>
 <li>CUE (and Dagger)</li>
@@ -1123,7 +874,7 @@
         <section class="main">
             
             <!-- .slide: class="main" -->
-<h3>Your Kubernetes deployments</h3>
+<h3>Your configuration files</h3>
 <h3>can and <strong>should</strong> be a lot <strong>simpler</strong></h3>
 
             </section>
@@ -1173,32 +924,38 @@
   </div>
 
   	
-	<script src="./libs/reveal.js/4.1.3/reveal.js"></script>
-	<script src="./libs/reveal.js/4.1.3/plugin/zoom/zoom.js"></script>
-	<script src="./libs/reveal.js/4.1.3/plugin/notes/notes.js"></script>
-	<script src="./libs/reveal.js/4.1.3/plugin/search/search.js"></script>
-	<script src="./libs/reveal.js/4.1.3/plugin/markdown/markdown.js"></script>
-	<script src="./libs/reveal.js/4.1.3/plugin/highlight/highlight.js"></script>
-	<script src="./libs/reveal.js/4.1.3/plugin/menu/menu.js"></script>
-	<script src="./libs/reveal.js/4.1.3/plugin/math/math.js"></script>
+	<script src="libs/reveal.js/4.1.3/reveal.js"></script>
+	<script src="libs/reveal.js/4.1.3/plugin/zoom/zoom.js"></script>
+	<script src="libs/reveal.js/4.1.3/plugin/notes/notes.js"></script>
+	<script src="libs/reveal.js/4.1.3/plugin/search/search.js"></script>
+	<script src="libs/reveal.js/4.1.3/plugin/markdown/markdown.js"></script>
+	<script src="libs/reveal.js/4.1.3/plugin/highlight/highlight.js"></script>
+	<script src="libs/reveal.js/4.1.3/plugin/menu/menu.js"></script>
+	<script src="libs/reveal.js/4.1.3/plugin/math/math.js"></script>
 
-	<script src="./libs/reveal.js/4.1.3/plugin/fullscreen/plugin.js"></script>
+	<script src="libs/reveal.js/4.1.3/plugin/fullscreen/plugin.js"></script>
   
-  	<script src="./libs/reveal.js/4.1.3/plugin/animate/plugin.js"></script>
-  	<script src="./libs/reveal.js/4.1.3/plugin/animate/svg.min.js"></script>
+  	<script src="libs/reveal.js/4.1.3/plugin/animate/plugin.js"></script>
+  	<script src="libs/reveal.js/4.1.3/plugin/animate/svg.min.js"></script>
   
-  	 <!--	<script src="./libs/reveal.js/4.1.3/plugin/anything/plugin.js"></script> -->
+  	<script src="libs/reveal.js/4.1.3/plugin/anything/plugin.js"></script>
+	  <script src="libs/reveal.js/4.1.3/plugin/anything/Chart.min.js"></script>
+	<script src="libs/reveal.js/4.1.3/plugin/anything/d3/d3.v3.min.js"></script>				
+	<script src="libs/reveal.js/4.1.3/plugin/anything/d3.patch.js"></script>			
+	<script src="libs/reveal.js/4.1.3/plugin/anything/d3/queue.v1.min.js"></script>		
+	<script src="libs/reveal.js/4.1.3/plugin/anything/d3/topojson.v1.min.js"></script>		
+	<script src="libs/reveal.js/4.1.3/plugin/anything/function-plot.js"></script>
 
- <!--	<script src="./libs/reveal.js/4.1.3/plugin/audio-slideshow/plugin.js"></script>  -->
-<!--	<script src="./libs/reveal.js/4.1.3/plugin/audio-slideshow/recorder.js"></script>-->
-<!--	<script src="./libs/reveal.js/4.1.3/plugin/audio-slideshow/RecordRTC.js"></script>-->
+ <!--	<script src="libs/reveal.js/4.1.3/plugin/audio-slideshow/plugin.js"></script>  -->
+<!--	<script src="libs/reveal.js/4.1.3/plugin/audio-slideshow/recorder.js"></script>-->
+<!--	<script src="libs/reveal.js/4.1.3/plugin/audio-slideshow/RecordRTC.js"></script>-->
 
-<script src="./libs/reveal.js/4.1.3/plugin/chalkboard/plugin.js"></script>
-	<script src="./libs/reveal.js/4.1.3/plugin/customcontrols/plugin.js"></script>
-	<script src="./libs/reveal.js/4.1.3/plugin/embed-tweet/plugin.js"></script>
+<script src="libs/reveal.js/4.1.3/plugin/chalkboard/plugin.js"></script>
+	<script src="libs/reveal.js/4.1.3/plugin/customcontrols/plugin.js"></script>
+	<script src="libs/reveal.js/4.1.3/plugin/embed-tweet/plugin.js"></script>
 
-	<script src="./libs/reveal.js/4.1.3/plugin/chart/chart.min.js"></script>
-	<script src="./libs/reveal.js/4.1.3/plugin/chart/plugin.js"></script>
+	<script src="libs/reveal.js/4.1.3/plugin/chart/chart.min.js"></script>
+	<script src="libs/reveal.js/4.1.3/plugin/chart/plugin.js"></script>
 
   <script>
 
@@ -1218,7 +975,7 @@
 				RevealMarkdown, 
 				RevealMenu, 
 				RevealFullscreen,
-				//RevealAnything,
+				RevealAnything,
 				//RevealAudioSlideshow,
 				//RevealAudioRecorder,
 				RevealCustomControls, 
@@ -1358,6 +1115,21 @@
 				// pass other options into `MathJax.Hub.Config()`
 				TeX: { Macros: { RR: "{\\bf R}" } }
 				},
+				anything: [ 
+				{
+		className: "plot",
+		defaults: {width:500, height: 500, grid:true},
+		initialize: (function(container, options){ options.target = "#"+container.id; functionPlot(options) })
+	 },
+	 {
+		className: "chart",  
+		initialize: (function(container, options){ container.chart = new Chart(container.getContext("2d"), options);  })
+	 },
+	 {
+		className: "anything",
+		initialize: (function(container, options){ if (options && options.initialize) { options.initialize(container)} })
+	 },
+					],
 			// Learn about plugins: https://revealjs.com/plugins/
 			plugins: (window.location.search.match(/print-pdf/gi) ? printPlugins : plugins ) 
 		});

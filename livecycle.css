@@ -55,3 +55,11 @@ header{
     right: 10px;
     color:#00aeef;
 }
+
+.author{
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    font-size:28px;
+
+}
